@@ -1,14 +1,15 @@
 <!doctype html>
 <html>
   <head>
+    <script src="./formatting.js"></script>
   </head>
   <body style="margin:0px 0px 0px 0px;background-color:rgb(225,214,169)">
-    
     <!-- Generic Header Bar Code, same for all pages -->
-    <div style="width:100%;height:160px;background-color:#862507;border: 0px none;min-width:1024px">
-      <a href="index.html"> <p style="margin:0px 0px 0px 0px;position:absolute;left:20px;width:30%;top:20px;font-family:Georgia, serif;font-size: 40px;color:white">THEMNMOORES.NET</p> </a>
-      <img src="pictures/familysmall.jpg" alt="Family" height="160" style="position:relative;left:85%;top:0px">
-    </div>
+    <div id="headerTopBar"></div>
+    <script>
+      commonPageHeaderBar("","");
+    </script>
+    
     
     
     <!-- Navigation Buttons, same for all pages we float it to the left so we can add content to the right -->
@@ -21,7 +22,7 @@
 
     
     <!-- Welcome text and pictures -->
-    <div style="margin-left:280px;margin-top:60px;min-width:900px">
+    <div style="margin-left:280px;margin-top:200px;min-width:900px">
       <p style="margin-top:10px;margin-left:0px;font-family:Georgia, serif;font-size: 20px">Welcome to our home page, we hope you enjoy our pictures and blogs.</p>
       <p style="margin-top:30px;margin-left:60px;font-family:Georgia, serif;font-size: 20px">Rich, Julie, Kristina, Steve, and John</p>
       <img src="pictures/homepictures.jpg" alt="Home Pictures" style="margin-top:0px;">
@@ -30,6 +31,8 @@
     <!-- Family News -->
     <div style="margin-left:280px;margin-top:0px;min-width:900px">
       <p style="margin-top:10px;margin-left:0px;font-family:Georgia, serif;font-size: 20px"><b>Family News</b></p>
+      <p style="border-top: 1px solid #000;margin-top:10px;padding-top:20px;margin-left:60px;font-family:Georgia, serif;font-size: 20px"><b>August 24, 2016:</b></p>
+      <p  style="margin-left:120px;font-family:Georgia, serif;font-size: 20px">First blog post up <a href="RichBlogs/BringingUpThemnmooresAugust232016/BringingUpthemnmooresDomain.html">August 24, 2016     Bringing Up themnmoores.net Domain</a></p>
       <p style="border-top: 1px solid #000;margin-top:10px;padding-top:20px;margin-left:60px;font-family:Georgia, serif;font-size: 20px"><b>August 18, 2016:</b></p>
       <p  style="margin-left:120px;font-family:Georgia, serif;font-size: 20px">Family website on the themnmoores.net domain launched, more features to come as we add them.</p>
     </div>
