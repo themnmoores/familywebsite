@@ -13,9 +13,9 @@
 //
 function commonPageHeaderBar(centeredText, pathToBase) {
       theDivWeWant = document.getElementById("headerTopBar");
-      theDivWeWant.style.position="absolute"
-      theDivWeWant.style.left="0px"
-      theDivWeWant.style.top="0px"
+      theDivWeWant.style.position="absolute";
+      theDivWeWant.style.left="0px";
+      theDivWeWant.style.top="0px";
       theDivWeWant.style.width="100%";
       theDivWeWant.style.height ="160px";
       theDivWeWant.style.backgroundColor="#862507";
