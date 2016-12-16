@@ -22,7 +22,7 @@ function commonPageHeaderBar(centeredText, pathToBase) {
       deviceWidth = window.innerWidth - window.pageXOffset;
       if (deviceWidth < screen.width)
         deviceWidth = screen.width;
-      window.alert("width = " + deviceWidth.toString());
+      //window.alert("width = " + deviceWidth.toString());
       theDivWeWant.style.width=deviceWidth.toString() + "px";
       theDivWeWant.style.minWidth="1024px";
       //theDivWeWant.style.minWidth="1200px";
