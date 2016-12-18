@@ -58,3 +58,29 @@ function commonNavivationButtons(pathToBase, grayOut) {
         
 }
 
+
+//
+// Adds the HTML code for incorporating HTML Comment Box to the bottom of a webpage
+//
+function addHTMLCommentBox() {
+  docBody.innerHTML += '<div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div><link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />';
+  
+if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%248DKVvDwwAtdLRiQpjTnoU0"+"&opts=16862&num=10&ts=1482012402568");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})();
+
+  
+}
+
+
+
+//
+// Adds google analytics to a page
+//
+function addGoogleAnalytics() {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-84283855-1', 'auto');
+  ga('send', 'pageview');
+}
