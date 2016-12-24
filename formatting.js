@@ -1,4 +1,6 @@
 //
+// Copyright 2016, Richard J. Moore all rights reserved
+//
 // formating.js
 //
 // Collection of common formatting functions, mostly for html generation
@@ -69,7 +71,6 @@ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("scr
 
   
 }
-
 
 
 //
