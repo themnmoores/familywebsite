@@ -6,6 +6,15 @@
 // Collection of common formatting functions, mostly for html generation
 //
 
+
+//
+// Sets the body's background color and margins
+//
+function setBodyBackgroundFormatting() {
+  document.body.style.backgroundColor="#E1D6A9";
+  document.body.style.margin="0px 0px 0px 0px";
+}
+ 
 //
 // Displays a header bar at the top of a web page, and adds a favicon
 // *** HTML must create a <div id="headerTopBar"></div> before calling.
