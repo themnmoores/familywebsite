@@ -1,0 +1,35 @@
+<!doctype html>
+<!--
+  Copyright (c) 2016  Richard J. Moore  All Rights Reserved.
+
+formatGoogleDocHtml.html
+
+Landing page for taking a Google Doc Save as Html zip file and converting it for use in themnmoores.net.
+
+Most of the functionality is in javascript: BrowsetCanvas.js
+-->
+
+<html>
+	<head>
+		<title>Convert Google Docs Html Zip File</title>
+
+
+   <!-- <script type="text/javascript" src='zip.js'></script> -->
+    <script type="text/javascript" src='jszip.min.js'></script>
+    <script type="text/javascript" src='FileSaver.js'></script>
+    <script type="text/javascript" src="formatGoogleDocHtmlFuncs.js"></script>
+	</head>
+	
+	<body style="background: white">
+      	<canvas style="border:4px solid #000000;position:absolute; TOP:60px; LEFT:30px; margin-top: 0px; margin-left: 0px; visibility:hidden;" id="boardCanvas" width="10" height="10" ></canvas>
+        <div>
+            <label style="font-size:30px; margin-top: 100px; margin-left: 50px;" id="topLabel" for="fileToUpload">Select Google Docs HTML Zip File to Convert</label><br/><br/>
+            <input accept=".zip" size="100" style="opacity:1.0; font-size:20px;margin-left: 80px;" type="file" name="fileToUpload" id="zipFile" onchange="StartGoogleDocsHTMLZipConvert();"/>
+          <br><br>
+            <label style="font-size:20px; margin-top: 100px; margin-left: 50px;" id="currentFileProcessing"></label><br/>             <br><br>
+            <div style="margin-left: 70px;" id="archiveFileContents" ></div>
+            <br>
+            <button  type="button" style="font-size:20px; margin-left: 60px; visibility:hidden;" id="ConvertHtmlZipFileButton" onclick="ConvertHtmlZipFile()">Convert HTML ZIP File</button>
+        </div>
+	</body>
+</html>
