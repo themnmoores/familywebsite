@@ -94,3 +94,46 @@ function addGoogleAnalytics() {
   ga('create', 'UA-84283855-1', 'auto');
   ga('send', 'pageview');
 }
+
+//
+// Sets the vertical scroll position such that a span that contains the specified text
+// is at the top of the browser screen, does nothing if a span is not found
+//
+//  html page url must have the vertscrollspan=text_to_find as a url parameter. _ are replaced with spaces
+//
+//  e.g.     www.mywebsite.net/thepage.html?vertscrollspan=Wine_To_Buy
+//
+
+function setVerticalPositionToSpan ()
+{
+  var parameterWeAreLookingFor = 'vertscrollspan=';
+  var urlParameters = window.location.search;
+  var vertScrollSpanParameter = urlParameters.indexOf(parameterWeAreLookingFor);
+  if (vertScrollSpanParameter != -1)
+  {
+    var stringWeAreLookingFor = urlParameters.substring(vertScrollSpanParameter+parameterWeAreLookingFor.length);
+    var endOfParameterText = stringWeAreLookingFor.indexOf('&');
+    if (endOfParameterText != -1)
+    {
+      endOfParameterText += vertScrollSpanParameter+parameterWeAreLookingFor.length;
+      stringWeAreLookingFor = urlParameters.substring(vertScrollSpanParameter+parameterWeAreLookingFor.length, endOfParameterText);
+    }
+    while(stringWeAreLookingFor.indexOf('_') != -1)
+    {
+      stringWeAreLookingFor = stringWeAreLookingFor.replace('_', ' ');
+    }
+    var listOfSpans = document.getElementsByTagName("Span");
+    var numberOfElements = listOfSpans.length;
+    for (var element = 0 ; element < numberOfElements ; element++)
+    {
+      var span = listOfSpans[element];
+      if (span.innerText.indexOf(stringWeAreLookingFor) != -1)
+      {
+        window.scroll(0,span.offsetTop - 200);
+        break;
+      }
+    }
+  }
+  
+  
+}
