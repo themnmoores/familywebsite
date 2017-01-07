@@ -127,7 +127,7 @@ function setVerticalPositionToSpan ()
     for (var element = 0 ; element < numberOfElements ; element++)
     {
       var span = listOfSpans[element];
-      if (span.innerText.indexOf(stringWeAreLookingFor) != -1)
+      if (span.innerHTML.length < 120 && span.innerHTML.indexOf(stringWeAreLookingFor) != -1)
       {
         window.scroll(0,span.offsetTop - 300);
         break;
