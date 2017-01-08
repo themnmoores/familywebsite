@@ -149,6 +149,18 @@ function ReadOfArchiveFileCompletedJsZip(evt)
         // Finally add the HTMLCommentBox stuff at the end of the <body> stuff
         content = content.replace('</body>', '\n\n<script>addHTMLCommentBox();</script>\n\n</body>');
         
+        // This section removed stuff google puts in for html links that causes a redirect warning
+        while(content.indexOf('https://www.google.com/url?q=') != -1)
+        {
+          content = content.replace('https://www.google.com/url?q=', '');
+        }
+        while(content.indexOf('/&amp;') != -1)
+        {
+          var beginningOfTrailerStuff = content.indexOf('/&amp;');
+          
+          content = content.replace()
+        }
+        
         // Replace the modified into the zip file (overwritting the existing one)
         zip.file(fileNames[0].name,content);
         zip.generateAsync({type:"blob"})
