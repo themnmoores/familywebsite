@@ -141,7 +141,7 @@ function ReadOfArchiveFileCompletedJsZip(evt)
         content = content.replace('</style>', '</style>\n\n<script>addGoogleAnalytics();</script>\n\n<meta name="description" content="Blogging Using Google Docs">\n<meta name="keywords" content="Blog,Blogging,Google Docs">\n\n');
         
         // Now set the background formatting, add the header and navigation link areas of the web page in the beginning of the <body>
-        content = content.replace('<p class=', '\n\n<script>setBodyBackgroundFormatting();</script>\n<div id="headerTopBar"></div>\n<script>commonPageHeaderBar("","../../");</script>\n<script>commonNavivationButtons("../../","");</script>\n\n<p class=');
+        content = content.replace('<p class=', '\n\n<script>setBodyBackgroundFormatting();</script>\n<div id="headerTopBar"></div>\n<script>commonPageHeaderBar("","../../../");</script>\n<script>commonNavivationButtons("../../../","");</script>\n\n<p class=');
         
         // Adjust the positioning of the content
         content = content.replace('padding:72pt 72pt 72pt 72pt', 'padding:200px 72pt 72pt 300px')
