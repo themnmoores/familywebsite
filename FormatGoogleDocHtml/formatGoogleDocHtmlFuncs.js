@@ -137,7 +137,7 @@ function ReadOfArchiveFileCompletedJsZip(evt)
         // Pretty up the beginning so it is more human readable with line feeds, input any javascript files needed
         // also add google analytics all in the <head> tag
         content = '<!doctype html>\n'+ content;
-        content = content.replace('<html><head>', '<html>\n\n<head>\n<script src="../../formatting.js"></script>\n\n');
+        content = content.replace('<html><head>', '<html>\n\n<head>\n<script src="../../../formatting.js"></script>\n\n');
         content = content.replace('</style>', '</style>\n\n<script>addGoogleAnalytics();</script>\n\n<meta name="description" content="Blogging Using Google Docs">\n<meta name="keywords" content="Blog,Blogging,Google Docs">\n\n');
         
         // Now set the background formatting, add the header and navigation link areas of the web page in the beginning of the <body>
