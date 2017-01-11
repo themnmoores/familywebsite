@@ -154,11 +154,18 @@ function ReadOfArchiveFileCompletedJsZip(evt)
         {
           content = content.replace('https://www.google.com/url?q=', '');
         }
-        while(content.indexOf('/&amp;') != -1)
+        
+        while(content.indexOf('&amp;') != -1)
         {
-          var beginningOfTrailerStuff = content.indexOf('/&amp;');
-          
-          content = content.replace()
+          var beginningOfTrailerStuff = content.indexOf('&amp;');
+          var endOfTrailerStuff = content.indexOf('"', beginningOfTrailerStuff);
+          var stringToReplace = content.substring(beginningOfTrailerStuff, endOfTrailerStuff);
+          content = content.replace(stringToReplace, '');
+        }
+        
+        while (content.indexOf('?vertscrollspan%3D') != -1)
+        {
+          content = content.replace('?vertscrollspan%3D', '?vertscrollspan=');
         }
         
         // Replace the modified into the zip file (overwritting the existing one)
