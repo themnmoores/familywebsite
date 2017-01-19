@@ -138,13 +138,28 @@ function ReadOfArchiveFileCompletedJsZip(evt)
         // also add google analytics all in the <head> tag
         content = '<!doctype html>\n'+ content;
         content = content.replace('<html><head>', '<html>\n\n<head>\n<script src="../../../formatting.js"></script>\n\n');
-        content = content.replace('</style>', '</style>\n\n<script>addGoogleAnalytics();</script>\n\n<meta name="description" content="Blogging Using Google Docs">\n<meta name="keywords" content="Blog,Blogging,Google Docs">\n\n');
+        // Get the keywords and description from the Google Doc text
+        var keywords = '';
+        var beginOfKeywords = content.indexOf('>keywords:');
+        if (beginOfKeywords != -1)
+        {
+          keywords = content.substring(beginOfKeywords+11, content.indexOf('</span>', beginOfKeywords));
+        }
+        var description = '';
+        var beginOfDescription = content.indexOf('>description:');
+        if (beginOfDescription != -1)
+        {
+          description = content.substring(beginOfDescription+14, content.indexOf('</span>', beginOfDescription));
+        }
+        
+        content = content.replace('</style>', '</style>\n\n<script>addGoogleAnalytics();</script>\n\n<meta name="description" content="' + description + '">\n<meta name="keywords" content="' + keywords + '">\n\n');
         
         // Now set the background formatting, add the header and navigation link areas of the web page in the beginning of the <body>
         content = content.replace('<p class=', '\n\n<script>setBodyBackgroundFormatting();</script>\n<div id="headerTopBar"></div>\n<script>commonPageHeaderBar("","../../../");</script>\n<script>commonNavivationButtons("../../../","");</script>\n\n<p class=');
         
-        // Adjust the positioning of the content
+        // Adjust the positioning of the content, 72pt is 1 inch and 36pt is 1/2 inch
         content = content.replace('padding:72pt 72pt 72pt 72pt', 'padding:200px 72pt 72pt 300px')
+        content = content.replace('padding:36pt 36pt 36pt 36pt', 'padding:200px 36pt 36pt 300px')
         
         // Finally add the HTMLCommentBox stuff at the end of the <body> stuff
         content = content.replace('</body>', '\n\n<script>addHTMLCommentBox();</script>\n\n</body>');
