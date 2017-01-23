@@ -1,5 +1,5 @@
 //
-// Copyright 2016, Richard J. Moore all rights reserved
+// Copyright 2016-2017, Richard J. Moore all rights reserved
 //
 // formatGoogleDocHtmlFuncs.js
 //
@@ -7,8 +7,8 @@
 // themnmoores.net website
 //
 // Notes:
-//    zip.js must be loaded by the HTML page code
 //    jszip.min.js must be loaded by the HTML page code
+//    FileSaver.js must be loaded by the HTML page code
 
 
 // *********************************************************************************************************
@@ -50,51 +50,6 @@ function StartGoogleDocsHTMLZipConvert() {
     reader.onloadend = ReadOfArchiveFileCompletedJsZip;
     reader.readAsArrayBuffer(file);
 
-}
-
-// *********************************************************************************************************
-// The read of the zip file is complete so get the html file in the zip and transform it, then write it
-// back into the zip file and save (download)
-// *********************************************************************************************************
-
-
-function ReadOfArchiveFileCompleted(evt)
-{
-  zip.workerScriptsPath = 'http://themnmoores.net/FormatGoogleDocHtml/'
-  dataForBlob = [evt.target.result];
-  var zipBlob = new Blob(dataForBlob);
-  var htmlFiles = [];
-  zip.createReader(new zip.BlobReader(zipBlob), function(reader) {
-
-    var filesStr = "HTML Files (should only be one):<br><br> ";
-    // get get html file from zip
-    reader.getEntries(function(entries) {
-      for (var file = 0 ; file < entries.length ; file++)
-  	  {
-  		  //filesStr += entries[file].filename + "<br>";
-  		  if (entries[file].filename.includes('.html'))
-  		  {
-  		    htmlFiles.push(entries[file].filename);
-  		    filesStr += entries[file].filename + "<br>";
-  		  }
-  	  }
-  	  if (htmlFiles.length === 0)
-  	  {
-  	    filesStr += "No HTML files found in ZIP file!!!<br>"
-  	  }
-  	  else if (htmlFiles.length != 1)
-  	  {
-  	    filesStr += "More than one HTML file found in ZIP file!!!<br>"
-  	  }
-  	  
-  	  
-      document.getElementById('archiveFileContents').innerHTML = filesStr;
-  
-    });
-  }
-  ,function(e) {
-      alert("There was an error with the zip file: " + e);
-  });
 }
 
 
@@ -208,19 +163,6 @@ function ReadOfArchiveFileCompletedJsZip(evt)
       
 
 	    
-	   // else
-	   // {
-    //     document.getElementById('archiveFileContents').innerHTML = filesStr;
-        
-    //     // Get the HTML file contents
-    //     var htmlCode = "";
-    //     var temp = htmlZipFile.file(fileNames[0].name);
-        
-        
-    //     filesStr += '<code>' + htmlCode + '</code>';
-    //     document.getElementById('archiveFileContents').innerHTML = filesStr;
 
-	   // }
-	    
 
 }
