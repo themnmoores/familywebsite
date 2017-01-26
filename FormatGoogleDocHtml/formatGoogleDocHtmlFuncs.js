@@ -160,9 +160,5 @@ function ReadOfArchiveFileCompletedJsZip(evt)
     {
       document.getElementById('archiveFileContents').innerHTML = '<br><br><b>ERROR reading zip file: </b>:' + e;
     });
-      
-
-	    
-
 
 }
