@@ -1,5 +1,5 @@
 //
-// Copyright 2016, Richard J. Moore all rights reserved
+// Copyright 2016-2017, Richard J. Moore all rights reserved
 //
 // formating.js
 //
