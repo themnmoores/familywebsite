@@ -106,8 +106,11 @@ function ReadOfArchiveFileCompletedJsZip(evt)
         {
           description = content.substring(beginOfDescription+14, content.indexOf('</span>', beginOfDescription));
         }
-        
         content = content.replace('</style>', '</style>\n\n<script>addGoogleAnalytics();</script>\n\n<meta name="description" content="' + description + '">\n<meta name="keywords" content="' + keywords + '">\n\n');
+        
+        // Add an onload callback to check for vertical position scrolling
+        content = content.replace('<body', '<body onload="setVerticalPositionToSpan()"');
+        
         
         // Now set the background formatting, add the header and navigation link areas of the web page in the beginning of the <body>
         content = content.replace('<p class=', '\n\n<script>setBodyBackgroundFormatting();</script>\n<div id="headerTopBar"></div>\n<script>commonPageHeaderBar("","../../../");</script>\n<script>commonNavivationButtons("../../../","");</script>\n\n<p class=');
