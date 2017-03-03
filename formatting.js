@@ -129,7 +129,7 @@ function setVerticalPositionToSpan ()
       var span = listOfSpans[element];
       if (span.innerHTML.length < 120 && span.innerHTML.indexOf(stringWeAreLookingFor) != -1)
       {
-        window.scroll(0,span.offsetTop - 300);
+        window.scroll(0,span.offsetTop - 400);
         break;
       }
     }
