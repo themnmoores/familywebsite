@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+  
+  <head>
+
+  <!-- <link rel="stylesheet" href="responsiveslides.css"> -->
+<style>
+.rslides {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0px;
+  margin: 20px;
+  }
+
+.rslides li {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  }
+
+.rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+  }
+
+.rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+  }
+  
+  .rslides2 {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  }
+
+  
+  .rslides_tabs {
+  background: rgba(0,0,0,.25);
+  box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+  -moz-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+  font-size: 18px;
+  list-style: none;
+  max-width: 800px;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+}
+.rslides_tabs li {
+  display: inline;
+  float: none;
+  margin-right: 1px;
+}
+.rslides_tabs a {
+  width: auto;
+  line-height: 20px;
+  padding: 9px 20px;
+  height: auto;
+  background: transparent;
+  display: inline;
+}
+
+.rslides_tabs a:hover {
+  border: 0;
+}
+
+.rslides_tabs li:first-child {
+  margin-left: 0;
+}
+.rslides_tabs .rslides_here a {
+  background: rgba(255,255,255,.1);
+  color: #000;
+  font-weight: bold;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+  </style>
+
+
+    <script src="../formatting.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="responsiveslides.min.js"></script>
+    <script>
+      addGoogleAnalytics();
+    </script>
+</head>
+  <body style="margin:0px 0px 0px 0px;background-color:rgb(225,214,169)">
+      <script>
+        setBodyBackgroundFormatting();
+      </script>
+    
+    <!-- Generic Header Bar Code, same for all pages -->
+    <div id="headerTopBar"></div>
+    <script>
+      commonPageHeaderBar("Photo Test","../");
+    </script>
+  
+
+    
+    <!-- Navigation Buttons, same for all pages we float it to the left so we can add content to the right -->
+    <script>
+      commonNavivationButtons("../","");
+    </script>
+
+    <!-- Blog Entries -->
+    <div style="margin-left:380px;margin-top:200px;min-width:1000px">
+  <script>
+  $(function() {
+    $(".rslides2").responsiveSlides({
+        auto: true,
+        pager: true,
+        speed: 1000,
+        maxwidth: 800,
+        nav: true,
+        nextText: "         Next"
+      });
+  });
+</script>
+
+<ul class="rslides rslides2">
+  <li><img src="20161011_105751.jpg" alt="">California Coast One</li>
+  <li><img src="20161011_112904.jpg" alt="">California Coast Two</li>
+  <li><img src="20161011_114812.jpg" alt="">California Coast Three</li>
+</ul>
+
+  
+    </div>
+    
+
+  </body>
+  
+
+</html>
