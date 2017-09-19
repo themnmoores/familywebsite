@@ -41,6 +41,54 @@ function commonPageHeaderBar(centeredText, pathToBase) {
       theDivWeWant.innerHTML += '<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/v7+AP///wCXl5cAZmZmAJ2dnQB9fX0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAgACAgICAgICAgIAIgICAgICAgACAAIEBAQCAgICAgAEAAIAAiIiRERCIiIiIiJEREIiIiIiIkREQiIiIiIiRERCIiIiIiJEREQSIiIiIkREREQiIiAjBAQAAiIiICUGAgIiIiIgIgACACIiIiAiAgICIiIiAAICAgACIiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" >'
 }
 
+//
+// Displays a header bar at the top of a web page, and adds a favicon
+// *** HTML must create a <div id="headerTopBar"></div> before calling.
+//
+//    centeredText    Text to display centered in the bar towards to the bottom of the bar (used to indicate the page we are on)
+//    pathToBase      How do we get to the base folder of the website e.g. (../../) is empty if page is on base
+//
+function commonPageHeaderBarNew(centeredText, pathToBase) {
+      theDivWeWant = document.getElementById("headerTopBar");
+      theDivWeWant.style.position="absolute";
+      theDivWeWant.style.left="0px";
+      theDivWeWant.style.top="0px";
+      theDivWeWant.style.height ="160px";
+      theDivWeWant.style.backgroundColor="#862507";
+      theDivWeWant.style.border="0px none";
+      deviceWidth = window.innerWidth;
+      deviceWidth3 = screen.width * window.devicePixelRatio;
+      if (deviceWidth3 > deviceWidth)
+        deviceWidth = deviceWidth3;
+      theDivWeWant.style.width="10000px";
+      theDivWeWant.style.minWidth="10000px";
+      //theDivWeWant.style.minWidth="1024px";
+      //theDivWeWant.style.minWidth="1200px";
+      theDivWeWant.innerHTML = '<a href="' + pathToBase + 'index.html"> <p style="margin:0px 0px 0px 0px;position:absolute;left:20px;width:30%;top:20px;font-family:Georgia, serif;font-size: 40px;color:white">THEMNMOORES.NET</p> </a><img src="' + pathToBase + 'pictures/familysmall.jpg" alt="Family" height="160px" style="position:relative;left:' + (deviceWidth - 260).toString() + 'px;top:0px"><p style="margin:0px 0px 0px 0px;position:relative;left:140px;top:-80px;text-align:left;font-family:Georgia, serif;font-size: 40px;color:white">' + centeredText +'</p>';
+      theDivWeWant.innerHTML += '<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/v7+AP///wCXl5cAZmZmAJ2dnQB9fX0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAgACAgICAgICAgIAIgICAgICAgACAAIEBAQCAgICAgAEAAIAAiIiRERCIiIiIiJEREIiIiIiIkREQiIiIiIiRERCIiIiIiJEREQSIiIiIkREREQiIiAjBAQAAiIiICUGAgIiIiIgIgACACIiIiAiAgICIiIiAAICAgACIiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" >'
+}
+
+//
+// Displays a header bar at the top of a web page, and adds a favicon
+// *** HTML must create a <div id="headerTopBar"></div> before calling.
+//
+//    centeredText    Text to display centered in the bar towards to the bottom of the bar (used to indicate the page we are on)
+//    pathToBase      How do we get to the base folder of the website e.g. (../../) is empty if page is on base
+//
+function commonPageHeaderBarNew2(centeredText, pathToBase) {
+      textToAdd = '';
+      textToAdd += '<div id="themnmoores_headerBar" style="position:relative;left:0px;top:0px;height:160px;width:100vw;background-color:#862507;border=0px none"> ';
+      deviceWidth = window.innerWidth;
+      deviceWidth3 = screen.width * window.devicePixelRatio;
+      if (deviceWidth3 > deviceWidth)
+        deviceWidth = deviceWidth3;
+      textToAdd += '<a href="' + pathToBase + 'index.html"> <p style="margin:0px 0px 0px 0px;position:absolute;left:20px;width:30%;top:20px;font-family:Georgia, serif;font-size: 40px;color:white">THEMNMOORES.NET</p> </a><img src="' + pathToBase + 'pictures/familysmall.jpg" alt="Family" height="160px" style="position:relative;left:80%;top:0px">'; //<p style="margin:0px 0px 0px 0px;position:relative;left:140px;top:-80px;text-align:left;font-family:Georgia, serif;font-size: 40px;color:white">' + centeredText +'</p>';
+     // textToAdd += '<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/v7+AP///wCXl5cAZmZmAJ2dnQB9fX0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAgACAgICAgICAgIAIgICAgICAgACAAIEBAQCAgICAgAEAAIAAiIiRERCIiIiIiJEREIiIiIiIkREQiIiIiIiRERCIiIiIiJEREQSIiIiIkREREQiIiAjBAQAAiIiICUGAgIiIiIgIgACACIiIiAiAgICIiIiAAICAgACIiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" >';
+      textToAdd += '</div>';
+      docBody = document.getElementsByTagName("body")[0];
+      docBody.innerHTML += textToAdd;
+}
+
 
 //
 // Displays navivation buttons on the left hand side of a wab page (absolute position on document body).
@@ -66,8 +114,79 @@ function commonNavivationButtons(pathToBase, grayOut) {
         docBody.innerHTML += '<img src="' + pathToBase + 'pictures/blogsgraybutton.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;position:absolute;left:20px;top:320px">';
       else
         docBody.innerHTML += '<a href="' + pathToBase + 'blogs.html"> <img src="' + pathToBase + 'pictures/blogsbutton.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;position:absolute;left:20px;top:320px"></a>';
-        
+
 }
+
+
+//
+// Displays navivation buttons below the header bar using a div
+//    pathToBase      How do we get to the base folder of the website e.g. (../../) is empty if page is on base
+//    grayOut         Display the Nth navigation button as a gray button to indicate this is where we are
+//                      1 = Home
+//                      2 = Pictures
+//                      3 = Blogs
+//
+function commonNavivationButtonsNew(pathToBase, grayOut) {
+      docBody = document.getElementsByTagName("body")[0];
+      
+      textToAdd = '';
+      //textToAdd += '<div id="themnmoores_nav" style="position:absolute;left:20px;top:180px"> ';
+      textToAdd += '<div id="themnmoores_nav" style="margin-right: auto;margin-left: auto;"> ';
+      
+      if (grayOut == "1")
+        textToAdd += '<img src="' + pathToBase + 'pictures/homegraybutton.png" alt="Home" height="50" style="position:absolute;left:60px">';
+      else
+        textToAdd += '<a href="' + pathToBase + 'index.html"> <img src="' + pathToBase + 'pictures/homebutton.png" alt="Home" height="50" style="position:absolute;left:60px"></a>';
+      
+      if (grayOut == "2")
+        textToAdd += '<img src="' + pathToBase + 'pictures/picturesgraybutton.png" alt="Home" height="50" style="position:absolute;left:300px">';
+      else
+        textToAdd += '<a href="' + pathToBase + 'pictures.html"> <img src="' + pathToBase + 'pictures/picturesbutton.png" alt="Home" height="50" style="position:absolute;left:300px"></a>';
+
+      if (grayOut == "3")
+        textToAdd += '<img src="' + pathToBase + 'pictures/blogsgraybutton.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;position:absolute;left:540px">';
+      else
+        textToAdd += '<a href="' + pathToBase + 'blogs.html"> <img src="' + pathToBase + 'pictures/blogsbutton.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;position:absolute;left:540px"></a>';
+      
+      textToAdd += "</div>";
+      docBody.innerHTML += textToAdd;
+}
+
+
+//
+// Displays navivation buttons below the header bar using a div
+//    pathToBase      How do we get to the base folder of the website e.g. (../../) is empty if page is on base
+//    grayOut         Display the Nth navigation button as a gray button to indicate this is where we are
+//                      1 = Home
+//                      2 = Pictures
+//                      3 = Blogs
+//
+function commonNavivationButtonsNew2(pathToBase, grayOut) {
+      docBody = document.getElementsByTagName("body")[0];
+      
+      textToAdd = '';
+      //textToAdd += '<div id="themnmoores_nav" style="position:absolute;left:20px;top:180px"> ';
+      textToAdd += '<div id="themnmoores_nav" style="margin-top:20px;border:0px none"> ';
+      
+      if (grayOut == "1")
+        textToAdd += '<img src="' + pathToBase + 'pictures/homegraybutton.png" alt="Home" height="50" style="margin-left:60px;border:0 none">';
+      else
+        textToAdd += '<a style="margin-left:60px;border:0"href="' + pathToBase + 'index.html"><img src="' + pathToBase + 'pictures/homebutton.png" alt="Home" height="50" ></a>';
+      
+      if (grayOut == "2")
+        textToAdd += '<img src="' + pathToBase + 'pictures/picturesgraybutton.png" alt="Home" height="50" style="margin-left:60px;border:0">';
+      else
+        textToAdd += '<a style="margin-left:60px;border:0 none" href="' + pathToBase + 'pictures.html"><img src="' + pathToBase + 'pictures/picturesbutton.png" height="50" ></a>';
+
+      if (grayOut == "3")
+        textToAdd += '<img src="' + pathToBase + 'pictures/blogsgraybutton.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;margin-left:60px;border:0">';
+      else
+        textToAdd += '<a style="margin-left:60px;border:0" href="' + pathToBase + 'blogs.html"><img src="' + pathToBase + 'pictures/blogsbutton.png" alt="Home" height="50" ></a>';
+      
+      textToAdd += "</div>";
+      docBody.innerHTML += textToAdd;
+}
+
 
 
 //
