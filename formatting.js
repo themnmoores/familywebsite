@@ -139,7 +139,17 @@ function setVerticalPositionToSpan () {
   }
   
 }
- 
+
+
+// **************************************************** Used for including Google Docs for blog posting so I do not have to change things
+
+// Creating the viewport
+
+function TextForCreateViewport()
+{
+  docHead = document.getElementsByTagName("head")[0];
+  docBody.innerHTML += '<meta name="viewport" content="width=1200">\n\n';
+}
 
   
   // ********************************* OLD STUFF
