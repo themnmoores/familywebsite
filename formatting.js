@@ -77,7 +77,7 @@ function commonNavivationButtonsNew2(pathToBase, grayOut) {
 // Adds the HTML code for incorporating HTML Comment Box to the bottom of a webpage
 //
 function addHTMLCommentBox() {
-  docBody.innerHTML += '<div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div><link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />';
+  docBody.innerHTML += '<div style="text-align:center" ><div style="width:612pt;margin-left: auto;margin-right: auto;"><div style="text-align: left" id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div></div></div><link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />';
   
 if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%248DKVvDwwAtdLRiQpjTnoU0"+"&opts=16862&num=10&ts=1482012402568");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})();
 
@@ -141,17 +141,7 @@ function setVerticalPositionToSpan () {
 }
 
 
-// **************************************************** Used for including Google Docs for blog posting so I do not have to change things
 
-// Creating the viewport
-
-function TextForCreateViewport()
-{
-  docHead = document.getElementsByTagName("head")[0];
-  docBody.innerHTML += '<meta name="viewport" content="width=1200">\n\n';
-}
-
-  
   // ********************************* OLD STUFF
   
    
