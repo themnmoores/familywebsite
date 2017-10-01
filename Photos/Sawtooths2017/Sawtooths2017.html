@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=1200">
+    <script src="../../formatting.js"></script>
+    <script src="photofilelist.js"></script>
+    <script src="../../photoslideshow.js"></script>
+
+    <script>
+      addGoogleAnalytics();
+    </script>
+</head>
+  <body> <!-- </body> onload="displayCurrentImage()"> -->
+      <script>
+        setBodyBackgroundFormatting();
+      </script>
+    
+    <!-- Generic Header Bar Code, same for all pages -->
+    <script>
+      commonPageHeaderBarNew2("","../../");
+    </script>
+  
+
+    
+    <!-- Navigation Buttons, same for all pages we float it to the left so we can add content to the right -->
+    <script>
+      commonNavivationButtonsNew2("../../","");
+    </script>
+    
+    <!-- Create simple photo viewer -->
+
+    <div style="text-align:center;">
+      
+      <div style="margin-left:auto;margin-right:auto;margin-top:40px">
+        <p id="themnmooresTitle" style="font-family:Georgia, serif;font-size: 20px;margin-left:auto;margin-right:auto;text-align: center;margin-bottom:0">title</p>
+        <img id="themnmooresLeft" height="80px" src="../../pictures/leftArrow512.png" style="margin-bottom:260px" onclick="leftArrowPressed()">
+        <canvas id="themnmooresPhotoCanvas" ></canvas>
+        <img id="themnmooresRight" height="80px" src="../../pictures/rightArrow512.png" style="margin-bottom:260px" onclick="rightArrowPressed()">
+        <p id="themnmooresCaption" style=";margin-top:10px;font-family:Georgia, serif;font-size: 18px;margin-left:auto;margin-right:auto;text-align: left;"></p>
+      
+        <script>
+          initializePhotoSlideShow("themnmooresPhotoCanvas", "themnmooresTitle", "themnmooresCaption", "themnmooresLeft", "themnmooresRight");
+        </script>
+        
+      </div>
+    
+    </div>
+
+  </body>
+</html>
