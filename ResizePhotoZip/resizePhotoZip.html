@@ -1,0 +1,34 @@
+<!doctype html>
+<!--
+  Copyright (c) 2016  Richard J. Moore  All Rights Reserved.
+
+resizePhotoZip.html
+
+Landing page for taking a zip file of image files and resizing them into a new zip archive
+
+Most of the functionality is in javascript: resizePhotoZip.js
+-->
+
+<html>
+	<head>
+		<title>Resize Image Files in a Zip File</title>
+
+
+    <script type="text/javascript" src='jszip.min.js'></script>
+    <script type="text/javascript" src='FileSaver.js'></script>
+    <script type="text/javascript" src="resizePhotoZip.js"></script>
+	</head>
+	
+	<body style="background: white">
+        <div>
+            <label style="font-size:30px; margin-top: 100px; margin-left: 50px;" id="topLabel" for="fileToUpload">Select Images Zip File to Resize</label><br/><br/>
+            <input accept=".zip" size="100" style="opacity:1.0; font-size:20px;margin-left: 80px;" type="file" name="fileToUpload" id="zipFile" onchange="StartImagesZipResize();"/>
+          <br><br>
+            <label style="font-size:20px; margin-top: 100px; margin-left: 50px;" id="currentFileProcessing"></label><br/>             <br><br>
+            <div style="margin-left: 70px;" id="archiveFileContents" ></div>
+            <br>
+            <button  type="button" style="font-size:20px; margin-left: 60px; visibility:hidden;" id="ConvertHtmlZipFileButton" onclick="ConvertHtmlZipFile()">Convert HTML ZIP File</button>
+        </div>
+        <canvas id="themnmooresResizeCanvas" width=800 height=600 style="border:4px solid #000000;"></canvas>
+	</body>
+</html>
