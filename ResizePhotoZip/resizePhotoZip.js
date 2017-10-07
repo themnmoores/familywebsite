@@ -19,6 +19,8 @@ var fileNames;
 var zipArchiveToReadFrom;
 var currentImage;
 var theResizeCanvas;
+var resizeTargetWidth = 800;
+var resizeTargetHeight = 600;
 
 
 // *********************************************************************************************************
@@ -134,32 +136,36 @@ function startProcessingFile(name)
 function resizeImage()
 {
   ctx = theResizeCanvas.getContext("2d");
-  ctx.clearRect(0, 0, theResizeCanvas.width, theResizeCanvas.height);
-  // Figure out how to display
-  var x = 0;
-  var y = 0;
-  var width = ctx.canvas.width;
-  var height = ctx.canvas.height;
-  
-  // Figure out how to fit the image to the slide show
-  scaleFactorX = width / currentImage.width;
-  scaleFactorY = height / currentImage.height;
+
+  // Figure out how to fit the image to the desired size restrictions
+  scaleFactorX = resizeTargetWidth / currentImage.width;
+  scaleFactorY = resizeTargetHeight / currentImage.height;
+  width = resizeTargetWidth;
+  height = resizeTargetHeight;
   if (scaleFactorX < scaleFactorY)      // Means the x dimension gets scaled more
   {
-    y = (height - (currentImage.height * scaleFactorX)) / 2.0; // So we center the image vertically
     height = currentImage.height * scaleFactorX;
   }
   else                                  // Means the y dimension gets scaled more
   {
-    x = (width - (currentImage.width * scaleFactorY)) / 2.0; // So we center the image horizontally
     width = currentImage.width * scaleFactorY;
     
   }
   
-  ctx.drawImage(currentImage, x, y, width, height);
+  theResizeCanvas.width = width;
+  theResizeCanvas.height = height;
   
+  
+  ctx.drawImage(currentImage, 0, 0, width, height);
+  
+  // Now create a jpeg image from canvas
+  var canvasJpegDataURL = theResizeCanvas.toDataURL('image/jpeg', 0.85);
+  
+  // Replace the modified jpeg into the zip file (overwritting the existing one)
+  zipArchiveToReadFrom.file(fileNames[currentFileNumber].name,canvasJpegDataURL);
+    
   nextImage();
-  
+
 }
 
 function nextImage()
@@ -169,6 +175,19 @@ function nextImage()
   {
       // Kick off the async chain of callbacks for processing an image
     startProcessingFile(fileNames[currentFileNumber].name);
+  }
+  else
+  {
+    // Create new zip file from modified files
+    zipArchiveToReadFrom.generateAsync({type:"blob"})
+    .then(function success(zippedFile) {
+      saveAs(zippedFile, "resizedImages.zip");
+    },
+    function error(e) {
+      document.getElementById('archiveFileContents').innerHTML = '<br><br><b>ERROR creating new zip file: </b>:' + e;
+      console.log('ERROR creating zip file:' + e);
+    });
+
   }
 
 }

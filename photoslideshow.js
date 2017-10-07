@@ -16,6 +16,7 @@ var currentImage;
 var currentImageNumberInSlideShow;
 var photoSlideShow;
 var caption;
+var theCanvas;
 
 var leftArrow;
 var rightArrow;
