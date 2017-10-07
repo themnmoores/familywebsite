@@ -158,6 +158,19 @@ function resizeImage()
   
   ctx.drawImage(currentImage, x, y, width, height);
   
+  nextImage();
+  
+}
+
+function nextImage()
+{
+  currentFileNumber++;
+  if (currentFileNumber < fileNames.length)
+  {
+      // Kick off the async chain of callbacks for processing an image
+    startProcessingFile(fileNames[currentFileNumber].name);
+  }
+
 }
 
 
