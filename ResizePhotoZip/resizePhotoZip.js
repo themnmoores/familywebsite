@@ -159,13 +159,20 @@ function resizeImage()
   ctx.drawImage(currentImage, 0, 0, width, height);
   
   // Now create a jpeg image from canvas
-  var canvasJpegDataURL = theResizeCanvas.toDataURL('image/jpeg', 0.85);
+  //var canvasJpegDataURL = theResizeCanvas.toDataURL('image/jpeg', 0.85);
+  var canvasJpegBlob = theResizeCanvas.toBlob(jpegBlobCallback,'image/jpeg', 0.85);
   
+
+}
+
+function jpegBlobCallback(blobObj)
+{
   // Replace the modified jpeg into the zip file (overwritting the existing one)
-  zipArchiveToReadFrom.file(fileNames[currentFileNumber].name,canvasJpegDataURL);
+  zipArchiveToReadFrom.file(fileNames[currentFileNumber].name,blobObj);
     
   nextImage();
-
+  
+  
 }
 
 function nextImage()
