@@ -58,8 +58,54 @@ function populatePhotoListJSONString()
   photoFileListJSONString +=' {"src": "48.jpg","caption": "Day 2: More wildflowers"},';
   photoFileListJSONString +=' {"src": "49.jpg","caption": "Day 2: The view heading up to the gap between Sawtooth Lake and McGown Lakes"},';
   
-  photoFileListJSONString +=' {"src": "50.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "50.jpg","caption": "Day 2: Wildflowers on the way to the gap"},';
+  photoFileListJSONString +=' {"src": "51.jpg","caption": "Day 2: Although the guidebook indicated there had been fire back in 2006 we were not ready for the total devastation we saw. Hard to believe that after 11 years it would still be so bad."},';
+  photoFileListJSONString +=' {"src": "52.jpg","caption": "Day 2: More fire devastation"},';
+  photoFileListJSONString +=' {"src": "53.jpg","caption": "Day 2: Some new life starting..."},';
+  photoFileListJSONString +=' {"src": "54.jpg","caption": "Day 2: The view back at the gap, glad we made the trip up and the clouds gave way to sun. Since I could see Stanley, I fired up my cell phone and was able to get strong 4G coverage so I sent some texts, emails with pictures attached."},';
+  photoFileListJSONString +=' {"src": "55.jpg","caption": "Day 2: Spreading some of Dad's ashes with a great view of Sawtooth lake. He had hiked to Sawtooth lake many years ago on a vacation to Sun Valley."},';
+  photoFileListJSONString +=' {"src": "56.jpg","caption": "Day 2: Using the log jam at the end of the lake to cross the outlet creek."},';
+  photoFileListJSONString +=' {"src": "57.jpg","caption": "Day 2: Steve navigating the rocks to cross, hiking poles make this a much easier and safer job."},';
+  photoFileListJSONString +=' {"src": "58.jpg","caption": "Day 2: Deja Vu, a sunny shot of the ridge."},';
+  photoFileListJSONString +=' {"src": "59.jpg","caption": "Day 2: Alpine Lake our destination for the night"},';
   
+  photoFileListJSONString +=' {"src": "60.jpg","caption": "Day 2: Alpine Lake our destination for the night"},';
+  photoFileListJSONString +=' {"src": "61.jpg","caption": "Day 2: Darrell trying his luck at Alpine Lake"},';
+  photoFileListJSONString +=' {"src": "62.jpg","caption": "Day 2: Darrell is on the rock in the middle of this shot"},';
+  photoFileListJSONString +=' {"src": "63.jpg","caption": "Day 2: Evening, the end of a good day"},';
+  photoFileListJSONString +=' {"src": "64.jpg","caption": "Day 3: We started the day with a 3.5 mile mostly downhill from Alpine Lake to Iron Creek Trailhead. It was a group descision (an easy one) to get up early, hike out, and hit the Stanley Bakery for breakfast (for the second time) before heading to the Pettit Lake trailhead."},';
+  photoFileListJSONString +=' {"src": "65.jpg","caption": "Day 3: First light at Alpine Lake"},';
+  photoFileListJSONString +=' {"src": "66.jpg","caption": "Day 3: Daybreak on Alpine Lake"},';
+  photoFileListJSONString +=' {"src": "67.jpg","caption": "Day 3: Early morning descent from Alpine Lake"},';
+  photoFileListJSONString +=' {"src": "68.jpg","caption": "Day 3: Darrell on the move for breakfast and coffee"},';
+  photoFileListJSONString +=' {"src": "69.jpg","caption": "Day 3: The Sawtooths from Stanley, we had spent the last two nights behind these peaks."},';
+
+  photoFileListJSONString +=' {"src": "70.jpg","caption": "Day 3: With full bellies we headed to the tailhead at Pettit Lake and resupplied with food for the next 4 nights. This would be our longest day and with the afternoon sun the 6 mile climb turned out to be a bit of a struggle."},';
+  photoFileListJSONString +=' {"src": "71.jpg","caption": "Day 3: Looking across Pettit Lake up the valley we were about to climb. El Capitan is the the peak in the middle."},';
+  photoFileListJSONString +=' {"src": "72.jpg","caption": "Day 3: Back into the wilderness."},';
+  photoFileListJSONString +=' {"src": "73.jpg","caption": "Day 3: Falls on creek, the Sawtooths had many nice falls that we hiked past."},';
+  photoFileListJSONString +=' {"src": "74.jpg","caption": "Day 3: Vince getting a closer picture of the falls."},';
+  photoFileListJSONString +=' {"src": "75.jpg","caption": "Day 3: Steve and Vince crossing one of the 6 water crossing we had. This one was the worst as many of the rocks you had to use were underwater. "},';
+  photoFileListJSONString +=' {"src": "76.jpg","caption": "Day 3: Vince picking out his route"},';
+  photoFileListJSONString +=' {"src": "77.jpg","caption": "Day 3: I think David is having some second thoughts about the crossing."},';
+  photoFileListJSONString +=' {"src": "78.jpg","caption": "Day 3: But carries on."},';
+  photoFileListJSONString +=' {"src": "79.jpg","caption": "Day 3: An easier crossing on a fallen tree."},';
+
+  photoFileListJSONString +=' {"src": "80.jpg","caption": "Day 3: Getting hot in the afternoon sun."},';
+  photoFileListJSONString +=' {"src": "81.jpg","caption": "Day 3: And up we go into the rocks and sun."},';
+  photoFileListJSONString +=' {"src": "82.jpg","caption": "Day 3: Vince moving up the climb"},';
+  photoFileListJSONString +=' {"src": "83.jpg","caption": "Day 3: Another of many falls."},';
+  photoFileListJSONString +=' {"src": "84.jpg","caption": "Day 3: The first view of the Alice Lake basin from the ponds below Alice Lake"},';
+  photoFileListJSONString +=' {"src": "85.jpg","caption": "Day 3: El Capitan of Idaho, the mountain man look is coming out."},';
+  photoFileListJSONString +=' {"src": "86.jpg","caption": "Day 3: El Capitan of Idaho without our mugs"},';
+  photoFileListJSONString +=' {"src": "87.jpg","caption": "Day 3: El Capitan of Idaho from the middle of Alice Lake quite the different look."},';
+  photoFileListJSONString +=' {"src": "88.jpg","caption": "Day 3: Steve enjoying Alice Lake and wondering where Darrell is. Darrell had gone ahead to scout campsites and was towards the end of the lake."},';
+  photoFileListJSONString +=' {"src": "89.jpg","caption": "Day 3: Can you guess the mountain?"},';
+  
+  photoFileListJSONString +=' {"src": "90.jpg","caption": "Day 3: A campsite with a view"},';
+  photoFileListJSONString +=' {"src": "91.jpg","caption": ""},';
+
+
   photoFileListJSONString +=' {"src": "196.jpg","caption": "last2image"}';
   photoFileListJSONString +=' ]}';
 }
