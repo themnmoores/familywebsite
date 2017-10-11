@@ -35,7 +35,30 @@ function populatePhotoListJSONString()
   photoFileListJSONString +=' {"src": "27.jpg","caption": "Day 1: Nothing like a package of freezed dried food after a day on the trail. At least the rain held off until we had eaten! "},';
   photoFileListJSONString +=' {"src": "28.jpg","caption": "Day 2: Our original plan was to hike back out and car camp for a night, but we thought it too scenic around Sawtooth Lake for that and modified our plan to do a short day back to Alpine Lake for the night. Steve and I decided to drop our packs at Sawtooth Lake and wander up the pass towards McGown Lakes and see over the other side. The sun started to come out in the early afternoon making for some incrediable views of Sawtooth Lake."},';
   photoFileListJSONString +=' {"src": "29.jpg","caption": "Day 2: A foggy start with the clouds hanging on the peaks."},';
-  photoFileListJSONString +=' {"src": "30.jpg","caption": " "},';
+
+  photoFileListJSONString +=' {"src": "30.jpg","caption": "Day 2: Vince not sure he is ready for the day yet."},';
+  photoFileListJSONString +=' {"src": "31.jpg","caption": "Day 2: Dave is up and ready!!!"},';
+  photoFileListJSONString +=' {"src": "32.jpg","caption": "Day 2: Some last minute fuel for Darrell"},';
+  photoFileListJSONString +=' {"src": "33.jpg","caption": "Day 2: Steve and I stayed for a few hours to see if the clouds would lift for some morning light photos, not yet"},';
+  photoFileListJSONString +=' {"src": "34.jpg","caption": "Day 2: The clouds coming up North Baron Creek Canyon"},';
+  photoFileListJSONString +=' {"src": "35.jpg","caption": "Day 2: After a few hours the clouds lifted a bit to get a shot of North Baron Creek Canyon and peak 9464/9656"},';
+  photoFileListJSONString +=' {"src": "36.jpg","caption": "Day 2: Finally the clouds are lifting"},';
+  photoFileListJSONString +=' {"src": "37.jpg","caption": "Day 2:"},';
+  photoFileListJSONString +=' {"src": "38.jpg","caption": "Day 2: The creek below our campsite"},';
+  photoFileListJSONString +=' {"src": "39.jpg","caption": "Day 2: Dried out and ready to pack up"},';
+  
+  photoFileListJSONString +=' {"src": "40.jpg","caption": "Day 2: Heading back to Sawtooth Lake past Lake 8271"},';
+  photoFileListJSONString +=' {"src": "41.jpg","caption": "Day 2: Wildflowers by Lake 8271"},';
+  photoFileListJSONString +=' {"src": "42.jpg","caption": "Day 2: A look back at Lake 8271 and the peaks"},';
+  photoFileListJSONString +=' {"src": "43.jpg","caption": "Day 2: One last look back from the gap between Lake 8271 and Sawtooth Lake"},';
+  photoFileListJSONString +=' {"src": "44.jpg","caption": "Day 2: Sawtooth Lake from the south"},';
+  photoFileListJSONString +=' {"src": "45.jpg","caption": "Day 2: Wildflowers at the south end of Sawtooth Lake"},';
+  photoFileListJSONString +=' {"src": "46.jpg","caption": "Day 2: Sawtooth Lake and Mount Regan no rain this time"},';
+  photoFileListJSONString +=' {"src": "47.jpg","caption": "Day 2: Darrell trying his luck in Sawtooth Lake"},';
+  photoFileListJSONString +=' {"src": "48.jpg","caption": "Day 2: More wildflowers"},';
+  photoFileListJSONString +=' {"src": "49.jpg","caption": "Day 2: The view heading up to the gap between Sawtooth Lake and McGown Lakes"},';
+  
+  photoFileListJSONString +=' {"src": "50.jpg","caption": ""},';
   
   photoFileListJSONString +=' {"src": "196.jpg","caption": "last2image"}';
   photoFileListJSONString +=' ]}';
