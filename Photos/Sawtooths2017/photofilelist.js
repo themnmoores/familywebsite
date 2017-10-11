@@ -63,7 +63,7 @@ function populatePhotoListJSONString()
   photoFileListJSONString +=' {"src": "52.jpg","caption": "Day 2: More fire devastation"},';
   photoFileListJSONString +=' {"src": "53.jpg","caption": "Day 2: Some new life starting..."},';
   photoFileListJSONString +=' {"src": "54.jpg","caption": "Day 2: The view back at the gap, glad we made the trip up and the clouds gave way to sun. Since I could see Stanley, I fired up my cell phone and was able to get strong 4G coverage so I sent some texts, emails with pictures attached."},';
-  photoFileListJSONString +=' {"src": "55.jpg","caption": "Day 2: Spreading some of Dad's ashes with a great view of Sawtooth lake. He had hiked to Sawtooth lake many years ago on a vacation to Sun Valley."},';
+  photoFileListJSONString +=' {"src": "55.jpg","caption": "Day 2: Spreading some of Dad\'s ashes with a great view of Sawtooth lake. He had hiked to Sawtooth lake many years ago on a vacation to Sun Valley."},';
   photoFileListJSONString +=' {"src": "56.jpg","caption": "Day 2: Using the log jam at the end of the lake to cross the outlet creek."},';
   photoFileListJSONString +=' {"src": "57.jpg","caption": "Day 2: Steve navigating the rocks to cross, hiking poles make this a much easier and safer job."},';
   photoFileListJSONString +=' {"src": "58.jpg","caption": "Day 2: Deja Vu, a sunny shot of the ridge."},';
