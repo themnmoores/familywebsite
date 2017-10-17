@@ -103,9 +103,121 @@ function populatePhotoListJSONString()
   photoFileListJSONString +=' {"src": "89.jpg","caption": "Day 3: Can you guess the mountain?"},';
   
   photoFileListJSONString +=' {"src": "90.jpg","caption": "Day 3: A campsite with a view"},';
-  photoFileListJSONString +=' {"src": "91.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "91.jpg","caption": "Day 4: Today was a simple 5 miles over Snowyside pass at 9390 feet in elevation to Toxaway Lake. The task was made a bit harder by the avalanche debris we encountered on the north side of the pass coming down into Toxaway."},';
+  photoFileListJSONString +=' {"src": "92.jpg","caption": "Day 4: First light on Alice Lake playing with the manual exposure mode of my camera."},';
+  photoFileListJSONString +=' {"src": "93.jpg","caption": "Day 4: Darrell the Californian with his improvised jacket because it was cold!"},';
+  photoFileListJSONString +=' {"src": "94.jpg","caption": "Day 4: The picture of the trip, Alice Lake in the morning light"},';
+  photoFileListJSONString +=' {"src": "95.jpg","caption": "Day 4: Alice Lake morning sunrise"},';
+  photoFileListJSONString +=' {"src": "96.jpg","caption": "Day 4: Basking in the morning light at Alice Lake before heading on. Getting that mountain look."},';
+  photoFileListJSONString +=' {"src": "97.jpg","caption": "Day 4: Darrell in a rare pose, his hat on for a backpacking photo"},';
+  photoFileListJSONString +=' {"src": "98.jpg","caption": "Day 4: Packed and loaded time to hit the trail, the folks ahead of us are another group of hikers."},';
+  photoFileListJSONString +=' {"src": "99.jpg","caption": "Day 4: The view on the way up to Snowyside Divide was captivating of the Twin Lakes Basin"},';
+  
+  photoFileListJSONString +=' {"src": "100.jpg","caption": "Day 4: But you had to keep an eye on the trail as a misstep would hurt or be fatal."},';
+  photoFileListJSONString +=' {"src": "101.jpg","caption": "Day 4: Best to stop and enjoy the view every so often and take some pictures with Snowyside Peak (10651) in the background. "},';
+  photoFileListJSONString +=' {"src": "102.jpg","caption": "Day 4: Twin Lakes"},';
+  photoFileListJSONString +=' {"src": "103.jpg","caption": "Day 4: One last look before heading over the divide. We were not as brave as Darrell, Vince and David who stood on the snow for pictures."},';
+  photoFileListJSONString +=' {"src": "104.jpg","caption": "Day 4: The view north from Snowyside Divide, we did not have any smoke issues from all the forest fires that were affecting the western states. Felt very lucky to have crystal clear skies 90 percent of the time."},';
+  photoFileListJSONString +=' {"src": "105.jpg","caption": "Day 4: What goes up must come down, in the mountains I consider downhills like this to be worse than the climbs. Our destination is beyond the lake (one of the Snowyside Divide Lakes) you see."},';
+  photoFileListJSONString +=' {"src": "106.jpg","caption": "Day 4: Wildflowers on the descend"},';
+  photoFileListJSONString +=' {"src": "107.jpg","caption": "Day 4: Butterfly drying its wings on a rock."},';
+  photoFileListJSONString +=' {"src": "108.jpg","caption": "Day 4: Vince and David enjoying a rest and fluids."},';
+  photoFileListJSONString +=' {"src": "109.jpg","caption": "Day 4: The start of the avalanche debris"},';
+  
+  photoFileListJSONString +=' {"src": "110.jpg","caption": "Day 4: Guess we need to detour back up the hill and around, the Sawtooth Society volunteers were up clearing the trail (Thanks!!!)"},';
+  photoFileListJSONString +=' {"src": "111.jpg","caption": "Day 4: This section reminded me of the Yosemite back country with the water flowing across the granite."},';
+  photoFileListJSONString +=' {"src": "112.jpg","caption": "Day 4: Darrell waiting patiently(?) to help guide us around the snow and debris. (he claimed he had been there for a good 30 minutes or so)"},';
+  photoFileListJSONString +=' {"src": "113.jpg","caption": "Day 4: David picking his way through the last snow field."},';
+  photoFileListJSONString +=' {"src": "114.jpg","caption": "Day 4: Vince picking his way through the last snow field."},';
+  photoFileListJSONString +=' {"src": "115.jpg","caption": "Day 4: First glimpse of Toxaway Lake"},';
+  photoFileListJSONString +=' {"src": "116.jpg","caption": "Day 4: Bringing some happiness to Vince and Steve"},';
+  photoFileListJSONString +=' {"src": "117.jpg","caption": "Day 4: A meadow of wildflowers on our way to a campsite along Toxaway Lake."},';
+  photoFileListJSONString +=' {"src": "118.jpg","caption": "Day 4: Toxaway lake"},';
+  photoFileListJSONString +=' {"src": "119.jpg","caption": "Day 4: Toxaway lake"},';
+  
+  photoFileListJSONString +=' {"src": "120.jpg","caption": "Day 4: Toxaway lake"},';
+  photoFileListJSONString +=' {"src": "121.jpg","caption": "Day 4: Toxaway lake"},';
+  photoFileListJSONString +=' {"src": "122.jpg","caption": "Day 4: Darrell playing yet another trout on Toxaway Lake"},';
+  photoFileListJSONString +=' {"src": "123.jpg","caption": "Day 4: Darrell with one of many nice trout, this one released (3 kept for dinner)"},';
+  photoFileListJSONString +=' {"src": "124.jpg","caption": "Day 4: A bald eagle that surprised us and grabbed a trout that Darrell had released but did not make it. Could not get my camera up in operation in time for the grab of the fish."},'
+  photoFileListJSONString +=' {"src": "125.jpg","caption": "Day 4: Another campsite with a view."},';
+  photoFileListJSONString +=' {"src": "126.jpg","caption": "Day 4: More wildflowers"},';
+  photoFileListJSONString +=' {"src": "127.jpg","caption": "Day 4: More wildflowers"},';
+  photoFileListJSONString +=' {"src": "128.jpg","caption": "Day 5: Our destination for the day was Imogene Lake over Imogene Divide. Unfortunatly, Vince\'s knee was giving him problems and swelling up so Vince and David decided to take a short day to Farley Lake and then out a day early to Pettit Lake. Turns out they missed Farley Lake(?) and hiked all the way out on Day 5."},';
+  photoFileListJSONString +=' {"src": "129.jpg","caption": "Day 5: Packing up for another day on the trail, my job was folding the tent and tarp just so you don\'t think I was simply supervising."},';
 
+  photoFileListJSONString +=' {"src": "130.jpg","caption": "Day 5: Meadow below Toxaway Lake"},';
+  photoFileListJSONString +=' {"src": "131.jpg","caption": "Day 5: Navigating a sunken walk way. It was nice that they put walkways across sensitive meadows."},';
+  photoFileListJSONString +=' {"src": "132.jpg","caption": "Day 5: More falls across granite"},';
+  photoFileListJSONString +=' {"src": "133.jpg","caption": "Day 5: Lake 8165, looking back up the canyon towards Toxaway Lake"},';
+  photoFileListJSONString +=' {"src": "134.jpg","caption": "Day 5: The creek we crossed 3 times heading up to Edith Lake"},';
+  photoFileListJSONString +=' {"src": "135.jpg","caption": "Day 5: Edith Lake and Peak 9955"},';
+  photoFileListJSONString +=' {"src": "136.jpg","caption": "Day 5: Up we go, the pass is to the left of Peak 9934"},';
+  photoFileListJSONString +=' {"src": "137.jpg","caption": "Day 5: Steve below Peak 9955 heading towards the trail junction"},';
+  photoFileListJSONString +=' {"src": "138.jpg","caption": "Day 5: The trail made it\'s way through a nice meadow for a bit."},';
+  photoFileListJSONString +=' {"src": "139.jpg","caption": "Day 5: Of course some wildflowers"},';
+  
+  photoFileListJSONString +=' {"src": "140.jpg","caption": "Day 5: Just glad I did not have vertigo or a fear of heights."},';
+  photoFileListJSONString +=' {"src": "141.jpg","caption": "Day 5: Peak 9955"},';
+  photoFileListJSONString +=' {"src": "142.jpg","caption": "Day 5: I think I thaught him well, the first thing you do at the divide is take pictures."},';
+  photoFileListJSONString +=' {"src": "143.jpg","caption": "Day 5: Looking south from Imogene Divide"},';
+  photoFileListJSONString +=' {"src": "144.jpg","caption": "Day 5: Looking south from Imogene Divide"},';
+  photoFileListJSONString +=' {"src": "145.jpg","caption": "Day 5: Of course, now we have to go back done and give up all the elevation we had climbed."},';
+  photoFileListJSONString +=' {"src": "146.jpg","caption": "Day 5: Our destination Imogene lake"},';
+  photoFileListJSONString +=' {"src": "147.jpg","caption": "Day 5: Heading down from Imogene Divide below Peak 9955"},';
+  photoFileListJSONString +=' {"src": "148.jpg","caption": "Day 5: Meadow above Imogene Lake"},';
+  photoFileListJSONString +=' {"src": "149.jpg","caption": "Day 5: Imogene Lake"},';
+  
+  photoFileListJSONString +=' {"src": "150.jpg","caption": "Day 5: Imogene Lake"},';
+  photoFileListJSONString +=' {"src": "151.jpg","caption": "Day 5: Imogene Lake"},';
+  photoFileListJSONString +=' {"src": "152.jpg","caption": "Day 5: Imogene Lake"},';
+  photoFileListJSONString +=' {"src": "153.jpg","caption": "Day 5: Our campsite is in that group of trees"},';
+  photoFileListJSONString +=' {"src": "154.jpg","caption": "Day 5: Adolescent chipmunks playing"},';
+  photoFileListJSONString +=' {"src": "155.jpg","caption": "Day 5: Butterfuly in camp"},';
+  photoFileListJSONString +=' {"src": "156.jpg","caption": "Day 5: This deer walked around our campsite for about 15 minutes and was not really bothered by our presence. We think it was an older deer that was a bit blind."},';
+  photoFileListJSONString +=' {"src": "157.jpg","caption": "Day 6: We backtracked most of the day, back over Imogene Divide for some more incredible views and then down to Farley Lake."},';
+  photoFileListJSONString +=' {"src": "158.jpg","caption": "Day 6: First light on Peaks 10016 and 9074 at Imogene lake. This was the only time we had haze from the forest fires. As you will see the wind came up and pushed it off in a few hours."},';
+  photoFileListJSONString +=' {"src": "159.jpg","caption": "Day 6: Taped and ready for action. Much better results this year with different boots and taping everyday. Still a few small blisters."},';
 
+  photoFileListJSONString +=' {"src": "160.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "161.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "162.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "163.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "164.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "165.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "166.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "167.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "168.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "169.jpg","caption": ""},';
+
+  photoFileListJSONString +=' {"src": "170.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "171.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "172.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "173.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "174.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "175.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "176.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "177.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "178.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "179.jpg","caption": ""},';
+
+  photoFileListJSONString +=' {"src": "180.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "181.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "182.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "183.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "184.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "185.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "186.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "187.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "188.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "189.jpg","caption": ""},';
+
+  photoFileListJSONString +=' {"src": "190.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "191.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "192.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "193.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "194.jpg","caption": ""},';
+  photoFileListJSONString +=' {"src": "195.jpg","caption": ""},';
   photoFileListJSONString +=' {"src": "196.jpg","caption": "last2image"}';
   photoFileListJSONString +=' ]}';
 }
