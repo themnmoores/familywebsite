@@ -1,5 +1,5 @@
 //
-// Copyright 2016-2017, Richard J. Moore all rights reserved
+// Copyright 2017, Richard J. Moore all rights reserved
 //
 // photoslideshow.js
 //
@@ -10,7 +10,9 @@
 //      <script src="photofilelist.js"></script>
 //
 
-// Some globals setup by the initializePhotoSlideShow, which must be called first
+// *************************************************************************************************************
+// Some globals setup by the initializePhotoSlideShow function, which must be called first!!!
+// *************************************************************************************************************
 
 var currentImage;
 var currentImageNumberInSlideShow;
@@ -20,6 +22,28 @@ var theCanvas;
 
 var leftArrow;
 var rightArrow;
+
+
+// *********************************************************************************************************
+//   This function must be called before any other functions!!!!
+//
+//   Initializes the global variables, parses the JSON string that must be in a global variable
+//   photoFileListJSONString initialized by another javascript script file sourced by the HTML page before
+//   this function is called, and then initializes the elements for the photo slide show, and finally
+//   starts the process of loading the first photo for display.
+//
+//   Uses standard Javascript FileReader to read the file, which will call ReadOfArchiveFileCompleted
+//   below to open and process the zip file.
+//
+//    canvasID    The string ID of the canvas element on the HTML page to use for displaying the photos
+//    titleID     The string ID of the title element (text <p>) for the photo slide show title, defined in
+//                JSON string
+//    captionID   The string ID of the caption element (text <p>) for the caption text of each photo,
+//                defined in JSON string
+//    leftArrowID The string ID of the left arrow element (image) used to set up navigating down the photos
+//    rightArrowID The string ID of the right arrow element (image) used to set up navigating up the photos
+//
+// *********************************************************************************************************
 
 
 function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rightArrowID)
@@ -48,6 +72,10 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
   setCurrentImage(photoSlideShow.images[currentImageNumberInSlideShow].src,photoSlideShow.images[currentImageNumberInSlideShow].caption);
 }
 
+// *********************************************************************************************************
+//   Uses standard Javascript Image object to read the file, which will call displayCurrentImage
+//   below when the image file data is loaded to display the photo.
+// *********************************************************************************************************
 
 function setCurrentImage(imageFileName, captionText)
 {
@@ -57,6 +85,10 @@ function setCurrentImage(imageFileName, captionText)
   currentImage.src = imageFileName;
 }
 
+// *********************************************************************************************************
+//   Called when the Image object has loaded the file data to display the photo. Figures out the dimensions
+//   of the image in the canvas element so that the image aspect ration is preserved.
+// *********************************************************************************************************
 
 function displayCurrentImage()
 {
@@ -87,10 +119,12 @@ function displayCurrentImage()
   
 }
 
-//
+
+// *********************************************************************************************************
 // Callback for the right arrow being pressed, goes to the next higher (N+1) image in the list
 // If we are at the end of the list circles back to image 0
-//
+// *********************************************************************************************************
+
 
 function rightArrowPressed()
 {
@@ -116,10 +150,10 @@ function rightArrowPressed()
 
 
 
-//
+// *********************************************************************************************************
 // Callback for the left arrow being pressed, goes to the next lower (N-1) image in the list
 // If we are at the start of the list circles back to image N
-//
+// *********************************************************************************************************
 
 function leftArrowPressed()
 {
