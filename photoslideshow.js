@@ -35,6 +35,7 @@ var rightArrow;
 //   Uses standard Javascript FileReader to read the file, which will call ReadOfArchiveFileCompleted
 //   below to open and process the zip file.
 //
+//    jsonFile    File containing json string information about slide show
 //    canvasID    The string ID of the canvas element on the HTML page to use for displaying the photos
 //    titleID     The string ID of the title element (text <p>) for the photo slide show title, defined in
 //                JSON string
@@ -48,9 +49,9 @@ var rightArrow;
 
 function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rightArrowID)
 {
-  populatePhotoListJSONString();
+  // populatePhotoListJSONString();
   photoSlideShow = JSON.parse(photoFileListJSONString);
-
+  
   theCanvas = document.getElementById(canvasID);
   theCanvas.height=Number(photoSlideShow.displayWindow.height);
   theCanvas.width=Number(photoSlideShow.displayWindow.width);
@@ -64,6 +65,8 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
   rightArrow =  document.getElementById(rightArrowID);
   
   
+  //textToSave = JSON.stringify(photoSlideShow);
+
   
   theTitle = document.getElementById(titleID);
   theTitle.innerHTML = '<b>' + photoSlideShow.displayWindow.title + '</b>';
