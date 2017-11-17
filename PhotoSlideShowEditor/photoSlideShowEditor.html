@@ -1,0 +1,41 @@
+<!doctype html>
+<!--
+  Copyright (c) 2017  Richard J. Moore  All Rights Reserved.
+
+photoSlideShowEditor.html
+
+Landing page for the creation and editing of photo slide shows for themnmoores.net
+
+Most of the functionality is in javascript:
+-->
+
+<html>
+	<head>
+		<title>Photo Slide Show Editor</title>
+
+
+    <script type="text/javascript" src='jszip.min.js'></script>
+    <script type="text/javascript" src='FileSaver.js'></script>
+    <script type="text/javascript" src='PhotoSlideShowEditor.js'></script>
+	</head>
+	
+	<body style="background: white">
+    <div>
+      <label style="font-size:30px; margin-top: 100px; margin-left: 50px;" id="topLabel" for="fileToUpload">Slide Show Editor</label><br/><br/>
+      <input type="button" style="opacity:1.0; font-size:20px;margin-left: 80px;" id="createSlideShowButton" value="Create Slide Show" onclick="document.getElementById('createSlideShow').click();" />
+      <input style="display:none;" accept=".jpg" multiple  type="file" name="filesToCreateWith" id="createSlideShow" onchange="CreateNewPhotoSlideShow();"/>
+      <input type="button" style="opacity:1.0; font-size:20px;margin-left: 80px;" id="editSlideShowButton" value="Edit Slide Show" onclick="document.getElementById('editSlideShow').click();" />
+      <input style="display:none;" accept=".zip"  type="file" name="zipToEditWith" id="editSlideShow" onchange="EditPhotoSlideShow();"/>
+      
+      <p style="display:none;font-size:20px;margin-left: 80px;" id="slideShowTitle">Title:</p><input style="display:none;font-size:20px;margin-left:5px;width:800px" type="text" id="slideShowTitleInput"><br>
+      <p style="display:none;font-size:20px;margin-left: 80px;margin-top:20px" id="slideShowWidth">Width:</p><input style="display:none;font-size:20px;margin-left:5px;margin-top:20px" type="text" id="slideShowWidthInput">
+      <p style="display:none;font-size:20px;margin-left: 80px;margin-top:20px" id="slideShowHeight">Height:</p><input style="display:none;font-size:20px;margin-left:5px;margin-top:20px" type="text" id="slideShowHeightInput"><br>
+      <p style="font-size:20px;margin-left: 80px;;margin-top:20px" id="tempForFileNames"></p>
+      <br>
+      <br>
+    </div>
+    <div id="photoGalleryDiv" style="font-size:20px;margin-left: 80px;margin-top:20px">
+      
+    </div>
+	</body>
+</html>
