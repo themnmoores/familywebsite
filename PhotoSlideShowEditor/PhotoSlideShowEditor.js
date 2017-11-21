@@ -14,15 +14,13 @@
 
 var PhotoSlideShowEditorVars = {
   // Used by async calls for creating photo gallery
-  currentImageNum:0,
+  //currentImageNum:0,
   currentImage:undefined, // Image Object
   photoGalleryElementWidth:160,
   photoGalleryElementHeight:120,
   photoGalleryInterSpace:40,
-  photoGalleryHorizontalImages:5,
+  photoGalleryHorizontalImages:6,
   photoGalleryCanvases:[],          // We hold the canvases here to all use to quickly move them or enable/disable display
-  photoGalleryTopOffset:180,
-  photoGalleryLeftOffset:80,
   photoGalleryDiv:undefined,        // The Div containing the photo Gallery
   
   // Used when in slide show mode
@@ -32,7 +30,12 @@ var PhotoSlideShowEditorVars = {
   photoSlideShow:{displayWindow: {width: 800,height: 600,title: "New Slide Show"},images:[]},
   
   // The HTML sets up a <div> for us to use in drawing a photo gallery
-  divForPhotoGallery:undefined
+  divForPhotoGallery:undefined,
+  
+  // Images selected by the user used by create and add functionality
+  imageFilesSelectedByUser:undefined,
+  currentImageSelectedByUser:0,
+  imageFilesLoaded:0
 };
 
 
@@ -63,66 +66,37 @@ function uploadCanceled(evt) {
 function CreateNewPhotoSlideShow()
 {
   // Get the jpeg files the user selected
-  var jpegFiles = document.getElementById('createSlideShow').files;
-  if (jpegFiles.length === 0) {
+  PhotoSlideShowEditorVars.imageFilesSelectedByUser = document.getElementById('createSlideShow').files;
+  if (PhotoSlideShowEditorVars.imageFilesSelectedByUser.length === 0) {
       alert("No files selected for photo slide show!!!!");
       return;
   }
   
-  // First turn off the create and edit buttons
-  var createButton = document.getElementById('createSlideShowButton');
-  createButton.style.display='none';
-  var editButton = document.getElementById('editSlideShowButton');
-  editButton.style.display='none';
+  // First turn off the create and edit buttons and on the save and addd buttons for UI
+  turnOffCreateAndEditButtons()  ;
+  turnOnAddAndSaveButtons();
   
-  
-  
-  // Put up the default information about slide show
-  var titleText = document.getElementById('slideShowTitle');
-  titleText.style.display='initial';
-  var titleInput = document.getElementById('slideShowTitleInput');
-  titleInput.style.display='initial';
-  titleInput.value=PhotoSlideShowEditorVars.photoSlideShow.displayWindow.title;
-  var widthText = document.getElementById('slideShowWidth');
-  widthText.style.display='initial';
-  var widthInput = document.getElementById('slideShowWidthInput');
-  widthInput.style.display='initial';
-  widthInput.value=PhotoSlideShowEditorVars.photoSlideShow.displayWindow.width;
-  var heightText = document.getElementById('slideShowHeight');
-  heightText.style.display='initial';
-  var heightInput = document.getElementById('slideShowHeightInput');
-  heightInput.style.display='initial';
-  heightInput.value=PhotoSlideShowEditorVars.photoSlideShow.displayWindow.height;
-  
+  // Display the default information about slide show
+  displaySlideShowInforation(PhotoSlideShowEditorVars.photoSlideShow.displayWindow.title,
+          PhotoSlideShowEditorVars.photoSlideShow.displayWindow.width, PhotoSlideShowEditorVars.photoSlideShow.displayWindow.height);
+
   PhotoSlideShowEditorVars.photoGalleryDiv = document.getElementById('photoGalleryDiv');
   
-  // Populate the slide show information with the files selected and set the caption to an empty string
-
-  var fileListText = document.getElementById('tempForFileNames');
-  var filesListHTML = '';
-  for (imageFileNum = 0 ; imageFileNum < jpegFiles.length ; imageFileNum++)
-  {
-    PhotoSlideShowEditorVars.photoSlideShow.images.push({src:jpegFiles[imageFileNum].name, caption:''});
-  }
-
-  // Start the async process of drawing a photo gallery
-  // PhotoSlideShowEditorVars.currentImage = new Image();
-  // PhotoSlideShowEditorVars.currentImage.onload = addImageToGallery;
-  // PhotoSlideShowEditorVars.currentImage.src = URL.createObjectURL(jpegFiles[0]);
+  // Start the async process of adding images to a photo gallery
   var theImage = new Image();
-  theImage.onload = addImageToGallery;
-  theImage.src = URL.createObjectURL(jpegFiles[0]);
+  theImage.onload = addImageToEndOfGallery;
+  theImage.src = URL.createObjectURL(PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]);
 
 }
 
 
-function addImageToGallery(evt)
+function addImageToEndOfGallery(evt)
 {
-  var topY = PhotoSlideShowEditorVars.photoGalleryDiv.offsetTop + Math.floor(PhotoSlideShowEditorVars.currentImageNum / PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
+  var topY = PhotoSlideShowEditorVars.photoGalleryDiv.offsetTop + Math.floor(PhotoSlideShowEditorVars.photoSlideShow.images.length / PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
                   (PhotoSlideShowEditorVars.photoGalleryElementHeight + PhotoSlideShowEditorVars.photoGalleryInterSpace);
-  var leftX = PhotoSlideShowEditorVars.photoGalleryLeftOffset + (PhotoSlideShowEditorVars.currentImageNum % PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
+  var leftX = PhotoSlideShowEditorVars.photoGalleryDiv.offsetLeft + (PhotoSlideShowEditorVars.photoSlideShow.images.length % PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
                   (PhotoSlideShowEditorVars.photoGalleryElementWidth + PhotoSlideShowEditorVars.photoGalleryInterSpace);
-  
+
   var theCanvas = document.createElement('canvas');
   theCanvas.width = PhotoSlideShowEditorVars.photoGalleryElementWidth;
   theCanvas.height = PhotoSlideShowEditorVars.photoGalleryElementHeight;
@@ -130,9 +104,10 @@ function addImageToGallery(evt)
   theCanvas.style.border = "1px solid";
   theCanvas.style.top = topY.toString() + 'px';
   theCanvas.style.left = leftX.toString() + 'px';
-  theCanvas.id = PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageNum].src;
-  
+  theCanvas.id = PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name;
+
   document.body.appendChild(theCanvas);
+  PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name, caption:'', htmlCanvas:theCanvas});
   
   ctx = theCanvas.getContext("2d");
   ctx.clearRect(0, 0, theCanvas.width, theCanvas.height);
@@ -168,81 +143,86 @@ function addImageToGallery(evt)
 
   // Set it up to call outselves again for the next image if needed
   
-  var jpegFiles = document.getElementById('createSlideShow').files;
-  if ((PhotoSlideShowEditorVars.currentImageNum + 1) < PhotoSlideShowEditorVars.photoSlideShow.images.length )
+  if ((PhotoSlideShowEditorVars.currentImageSelectedByUser + 1) < PhotoSlideShowEditorVars.imageFilesSelectedByUser.length )
   {
-    PhotoSlideShowEditorVars.currentImageNum++;
-    // PhotoSlideShowEditorVars.currentImage = new Image();
-    // PhotoSlideShowEditorVars.currentImage.onload = addImageToGallery;
-    // PhotoSlideShowEditorVars.currentImage.src = URL.createObjectURL(jpegFiles[PhotoSlideShowEditorVars.currentImageNum]);
+    PhotoSlideShowEditorVars.currentImageSelectedByUser++;
     var theImage = new Image();
-    theImage.onload = addImageToGallery;
-    theImage.src = URL.createObjectURL(jpegFiles[PhotoSlideShowEditorVars.currentImageNum]);
+    theImage.onload = addImageToEndOfGallery;
+    theImage.src = URL.createObjectURL(PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]);
   }
   
 }
 
+// *********************************************************************************************************
+//  Add a photo or photos to the end of the slide show, a callback
+// *********************************************************************************************************
 
+function addPhotosToSlideShow()
+{
+  // Get the jpeg files the user selected
+  PhotoSlideShowEditorVars.imageFilesSelectedByUser = document.getElementById('addPhotosToSlideShow').files;
+  if (PhotoSlideShowEditorVars.imageFilesSelectedByUser.length === 0) {
+      alert("No files selected for photo slide show!!!!");
+      return;
+  }
+  
+  // Start the async process of adding images to a photo gallery
+  PhotoSlideShowEditorVars.currentImageSelectedByUser = 0;
+  var theImage = new Image();
+  theImage.onload = addImageToEndOfGallery;
+  theImage.src = URL.createObjectURL(PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]);
+  
+}
 
+// *********************************************************************************************************
+//  Turn off the display of the create and edit slide show buttons
+// *********************************************************************************************************
 
-
-
+function turnOffCreateAndEditButtons()
+{
+  var createButton = document.getElementById('createSlideShowButton');
+  createButton.style.display='none';
+  var editButton = document.getElementById('editSlideShowButton');
+  editButton.style.display='none';
+}
 
 
 
 // *********************************************************************************************************
-//  Base64 encode / decode
-//  http://www.webtoolkit.info/
-//
-//  Modified to make it more efficient (I think RJM)
+//  Turn on the display of the add photo and save slide show buttons
 // *********************************************************************************************************
 
-var Base64 = {
+function turnOnAddAndSaveButtons()
+{
+  var addPhotoButton = document.getElementById('addPhotoButton');
+  addPhotoButton.style.display='initial';
+  var saveSlideShowButton = document.getElementById('saveSlideShowButton');
+  saveSlideShowButton.style.display='initial';
+}
 
-    // private property
-    _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
 
-    // public method for encoding
-    encode: function (input) {
-        var output = "";
-        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-        var i = 0;
+// *********************************************************************************************************
+//  Display the generic information about a slide show
+// *********************************************************************************************************
 
-        var actualBytes = new Uint8Array(input);
-        var threes = input.byteLength / 3;
-        threes = threes * 3;
-        while (i < threes) {
-            chr1 = actualBytes[i++];
-            chr2 = actualBytes[i++];
-            chr3 = actualBytes[i++];
 
-            enc1 = chr1 >> 2;
-            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-            enc4 = chr3 & 63;
-
-            output = output +
-			    this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-			    this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
-
-        }
-        var leftovers = input.byteLength % 3;
-        if (leftovers === 0) return output;
-
-        enc3 = 64;
-        enc4 = 64;
-        enc1 = actualBytes[i] >> 2;
-        enc2 = ((actualBytes[i++] & 3) << 4);
-        if (leftovers == 2) {
-            enc2 = enc2 | (actualBytes[i] >> 4);
-            enc3 = ((actualBytes[i] & 15) << 2);
-        }
-        output = output +
-			    this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-			    this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
-
-        return output;
-    }
-
+function displaySlideShowInforation(title, width, height)
+{
+  var titleText = document.getElementById('slideShowTitle');
+  titleText.style.display='initial';
+  var titleInput = document.getElementById('slideShowTitleInput');
+  titleInput.style.display='initial';
+  titleInput.value=title;
+  var widthText = document.getElementById('slideShowWidth');
+  widthText.style.display='initial';
+  var widthInput = document.getElementById('slideShowWidthInput');
+  widthInput.style.display='initial';
+  widthInput.value=width.toString();
+  var heightText = document.getElementById('slideShowHeight');
+  heightText.style.display='initial';
+  var heightInput = document.getElementById('slideShowHeightInput');
+  heightInput.style.display='initial';
+  heightInput.value=height.toString();
+  
 }
 
