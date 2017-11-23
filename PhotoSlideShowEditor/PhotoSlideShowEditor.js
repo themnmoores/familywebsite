@@ -35,7 +35,8 @@ var PhotoSlideShowEditorVars = {
   // Images selected by the user used by create and add functionality
   imageFilesSelectedByUser:undefined,
   currentImageSelectedByUser:0,
-  imageFilesLoaded:0
+  imageFilesLoaded:0,
+  
 };
 
 
@@ -90,6 +91,13 @@ function CreateNewPhotoSlideShow()
 }
 
 
+
+// *********************************************************************************************************
+//  A callback to add the loaded Image to the end of our current gallery
+//
+// *********************************************************************************************************
+
+
 function addImageToEndOfGallery(evt)
 {
   var topY = PhotoSlideShowEditorVars.photoGalleryDiv.offsetTop + Math.floor(PhotoSlideShowEditorVars.photoSlideShow.images.length / PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
@@ -107,7 +115,8 @@ function addImageToEndOfGallery(evt)
   theCanvas.id = PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name;
 
   document.body.appendChild(theCanvas);
-  PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name, caption:'', htmlCanvas:theCanvas});
+  PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name, caption:'',
+        htmlCanvas:theCanvas,imageFileBlob:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]});
   
   ctx = theCanvas.getContext("2d");
   ctx.clearRect(0, 0, theCanvas.width, theCanvas.height);
@@ -223,6 +232,34 @@ function displaySlideShowInforation(title, width, height)
   var heightInput = document.getElementById('slideShowHeightInput');
   heightInput.style.display='initial';
   heightInput.value=height.toString();
+  
+}
+
+
+
+// *********************************************************************************************************
+//  Save the file (photos and json javascript file) in a zip archive
+//
+//   Note: Uses jszip.min.js for zip archive creation
+//      Uses FileSaver.js to download the archive
+// *********************************************************************************************************
+
+function saveSlideShow()
+{
+  var zipArchive = new JSZip();
+  for (image = 0 ; image < PhotoSlideShowEditorVars.photoSlideShow.images.length ; image++)
+  {
+    zipArchive.file(PhotoSlideShowEditorVars.photoSlideShow.images[image].src, PhotoSlideShowEditorVars.photoSlideShow.images[image].imageFileBlob);
+  }
+  zipArchive.generateAsync({type:"blob"})
+  .then(function success(zippedFile) {
+    // Save to file
+    saveAs(zippedFile, 'photoSlideShow.zip');
+  },
+  function error(e) {
+    alert('<br><br><b>ERROR creating new zip file: </b>:' + e);
+  });
+  
   
 }
 
