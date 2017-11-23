@@ -115,7 +115,8 @@ function addImageToEndOfGallery(evt)
   theCanvas.id = PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name;
 
   document.body.appendChild(theCanvas);
-  PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name, caption:'',
+  PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name,
+        caption:'Caption ' + (PhotoSlideShowEditorVars.photoSlideShow.images.length + 1).toString(),
         htmlCanvas:theCanvas,imageFileBlob:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]});
   
   ctx = theCanvas.getContext("2d");
@@ -246,11 +247,26 @@ function displaySlideShowInforation(title, width, height)
 
 function saveSlideShow()
 {
+  // Add all the jpeg file to the archive
   var zipArchive = new JSZip();
   for (image = 0 ; image < PhotoSlideShowEditorVars.photoSlideShow.images.length ; image++)
   {
     zipArchive.file(PhotoSlideShowEditorVars.photoSlideShow.images[image].src, PhotoSlideShowEditorVars.photoSlideShow.images[image].imageFileBlob);
   }
+  
+  // Create the javascript file photofilelist.js that has the JSON string photoFileListJSONString in it that
+  // has all the information concerning the photo slide show. Need to create a new one that does not have
+  // the html canvas and jpeg blob info
+  var trimmedPhotoSlideShow = {displayWindow: PhotoSlideShowEditorVars.photoSlideShow.displayWindow,images:[]};
+  for (image = 0 ; image < PhotoSlideShowEditorVars.photoSlideShow.images.length ; image++)
+  {
+    trimmedPhotoSlideShow.images.push({src: PhotoSlideShowEditorVars.photoSlideShow.images[image].src,
+            caption: PhotoSlideShowEditorVars.photoSlideShow.images[image].caption});
+  }
+  var jsonStringForSlideShow = 'var photoFileListJSONString = \'' + JSON.stringify(trimmedPhotoSlideShow) + '\'';
+  zipArchive.file('photofilelist.js', jsonStringForSlideShow);
+
+  // Save archive to generic photoSlideShow.zip in downloads
   zipArchive.generateAsync({type:"blob"})
   .then(function success(zippedFile) {
     // Save to file
