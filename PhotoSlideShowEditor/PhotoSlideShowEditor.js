@@ -258,6 +258,10 @@ function saveSlideShow()
   // has all the information concerning the photo slide show. Need to create a new one that does not have
   // the html canvas and jpeg blob info
   var trimmedPhotoSlideShow = {displayWindow: PhotoSlideShowEditorVars.photoSlideShow.displayWindow,images:[]};
+  trimmedPhotoSlideShow.displayWindow.title = document.getElementById('slideShowTitleInput').value;
+  trimmedPhotoSlideShow.displayWindow.width = document.getElementById('slideShowWidthInput').value;
+  trimmedPhotoSlideShow.displayWindow.height = document.getElementById('slideShowHeightInput').value;
+  
   for (image = 0 ; image < PhotoSlideShowEditorVars.photoSlideShow.images.length ; image++)
   {
     trimmedPhotoSlideShow.images.push({src: PhotoSlideShowEditorVars.photoSlideShow.images[image].src,
