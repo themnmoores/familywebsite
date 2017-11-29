@@ -36,6 +36,9 @@ var PhotoSlideShowEditorVars = {
   imageFilesSelectedByUser:undefined,
   currentImageSelectedByUser:0,
   imageFilesLoaded:0,
+
+  // Used for moving photos in slide show
+  currentlySelectedCanvas:undefined
   
 };
 
@@ -109,12 +112,15 @@ function addImageToEndOfGallery(evt)
   theCanvas.width = PhotoSlideShowEditorVars.photoGalleryElementWidth;
   theCanvas.height = PhotoSlideShowEditorVars.photoGalleryElementHeight;
   theCanvas.style.position = "absolute";
-  theCanvas.style.border = "1px solid";
+  theCanvas.style.border = "1px solid black";
   theCanvas.style.top = topY.toString() + 'px';
   theCanvas.style.left = leftX.toString() + 'px';
+  theCanvas.onclick = function(evt) { photoGalleryElementMouseClick(evt) };
   theCanvas.id = PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name;
 
   document.body.appendChild(theCanvas);
+  
+  // Push an image to the end of the photo slide show array of images
   PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name,
         caption:'Caption ' + (PhotoSlideShowEditorVars.photoSlideShow.images.length + 1).toString(),
         htmlCanvas:theCanvas,imageFileBlob:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]});
@@ -277,9 +283,47 @@ function saveSlideShow()
     saveAs(zippedFile, 'photoSlideShow.zip');
   },
   function error(e) {
-    alert('<br><br><b>ERROR creating new zip file: </b>:' + e);
+    alert('ERROR creating new zip file: ' + e);
   });
   
   
 }
 
+
+
+
+function photoGalleryElementMouseClick (evt)
+{
+  if (!PhotoSlideShowEditorVars.currentlySelectedCanvas)
+  {
+    PhotoSlideShowEditorVars.currentlySelectedCanvas = document.getElementById(evt.currentTarget.id);
+    PhotoSlideShowEditorVars.currentlySelectedCanvas.style.border = "3px solid red";
+  }
+  else
+  {
+    if (PhotoSlideShowEditorVars.currentlySelectedCanvas.id != evt.currentTarget.id)
+    {
+      // Put the previously selected photo ahead of the currently selected canvas
+      
+      // First find the index of the canvases we are working with
+      currentlySelectedCanvasIndex = findCurrentIndexOfCanvas(evt.currentTarget.id);
+      firstSelectedCanvasIndex = findCurrentIndexOfCanvas(PhotoSlideShowEditorVars.currentlySelectedCanvas.id);
+      
+    }
+    PhotoSlideShowEditorVars.currentlySelectedCanvas.style.border = "1px solid black";
+    PhotoSlideShowEditorVars.currentlySelectedCanvas = undefined;
+  }
+}
+
+
+function findCurrentIndexOfCanvas(canvasId)
+{
+  for (image = 0 ; image < PhotoSlideShowEditorVars.photoSlideShow.images.length ; image++)
+  {
+    if (PhotoSlideShowEditorVars.photoSlideShow.images[image].src == canvasId)
+    {
+      return image;
+    }
+  }
+  return -1;
+}
