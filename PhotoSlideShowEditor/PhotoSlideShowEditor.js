@@ -103,10 +103,8 @@ function CreateNewPhotoSlideShow()
 
 function addImageToEndOfGallery(evt)
 {
-  var topY = PhotoSlideShowEditorVars.photoGalleryDiv.offsetTop + Math.floor(PhotoSlideShowEditorVars.photoSlideShow.images.length / PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
-                  (PhotoSlideShowEditorVars.photoGalleryElementHeight + PhotoSlideShowEditorVars.photoGalleryInterSpace);
-  var leftX = PhotoSlideShowEditorVars.photoGalleryDiv.offsetLeft + (PhotoSlideShowEditorVars.photoSlideShow.images.length % PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
-                  (PhotoSlideShowEditorVars.photoGalleryElementWidth + PhotoSlideShowEditorVars.photoGalleryInterSpace);
+  var topY = calculateTopY(PhotoSlideShowEditorVars.photoSlideShow.images.length);
+  var leftX = calculateLeftX(PhotoSlideShowEditorVars.photoSlideShow.images.length);
 
   var theCanvas = document.createElement('canvas');
   theCanvas.width = PhotoSlideShowEditorVars.photoGalleryElementWidth;
@@ -120,10 +118,11 @@ function addImageToEndOfGallery(evt)
 
   document.body.appendChild(theCanvas);
   
-  // Push an image to the end of the photo slide show array of images
+  // ****  Push an image to the end of the photo slide show array of images
   PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name,
         caption:'Caption ' + (PhotoSlideShowEditorVars.photoSlideShow.images.length + 1).toString(),
-        htmlCanvas:theCanvas,imageFileBlob:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]});
+        htmlCanvas:theCanvas,
+        imageFileBlob:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]});
   
   ctx = theCanvas.getContext("2d");
   ctx.clearRect(0, 0, theCanvas.width, theCanvas.height);
@@ -167,6 +166,23 @@ function addImageToEndOfGallery(evt)
     theImage.src = URL.createObjectURL(PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]);
   }
   
+}
+
+// *********************************************************************************************************
+//  Functions to calculate the top left hand corner position of a canvas based on the gallery sizing
+//  and the index number of the image in the gallery (starting at 0)
+// *********************************************************************************************************
+
+function calculateTopY (imageIndex)
+{
+  return PhotoSlideShowEditorVars.photoGalleryDiv.offsetTop + Math.floor(imageIndex / PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
+                  (PhotoSlideShowEditorVars.photoGalleryElementHeight + PhotoSlideShowEditorVars.photoGalleryInterSpace);
+}
+
+function calculateLeftX (imageIndex)
+{
+  return PhotoSlideShowEditorVars.photoGalleryDiv.offsetLeft + (imageIndex % PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
+                  (PhotoSlideShowEditorVars.photoGalleryElementWidth + PhotoSlideShowEditorVars.photoGalleryInterSpace)
 }
 
 // *********************************************************************************************************
@@ -309,12 +325,59 @@ function photoGalleryElementMouseClick (evt)
       currentlySelectedCanvasIndex = findCurrentIndexOfCanvas(evt.currentTarget.id);
       firstSelectedCanvasIndex = findCurrentIndexOfCanvas(PhotoSlideShowEditorVars.currentlySelectedCanvas.id);
       
+      // We are moving an photo up the list to replace the currently selected photo
+      if (currentlySelectedCanvasIndex < firstSelectedCanvasIndex)
+      {
+        // First resuffle the images in the images array
+        var imageBeingMovedImageEntry = PhotoSlideShowEditorVars.photoSlideShow.images[firstSelectedCanvasIndex];
+        for (image = currentlySelectedCanvasIndex ; image <= firstSelectedCanvasIndex ; image++)
+        {
+          var nextImageToBeMovedImageEntry = PhotoSlideShowEditorVars.photoSlideShow.images[image];
+          PhotoSlideShowEditorVars.photoSlideShow.images[image] = imageBeingMovedImageEntry;
+          imageBeingMovedImageEntry = nextImageToBeMovedImageEntry;
+        }
+
+
+        // Next reset the canvas positions based on current index in array
+        for (image = currentlySelectedCanvasIndex ; image <= firstSelectedCanvasIndex ; image++)
+        {
+          PhotoSlideShowEditorVars.photoSlideShow.images[image].htmlCanvas.style.top = calculateTopY(image).toString() + 'px';
+          PhotoSlideShowEditorVars.photoSlideShow.images[image].htmlCanvas.style.left = calculateLeftX(image).toString() + 'px';
+        }
+      }
+      
+      // We are moving an photo down the list to replace the currently selected photo
+      if (currentlySelectedCanvasIndex > firstSelectedCanvasIndex)
+      {
+        // First resuffle the images in the images array
+        var imageBeingMovedImageEntry = PhotoSlideShowEditorVars.photoSlideShow.images[firstSelectedCanvasIndex];
+        for (image = currentlySelectedCanvasIndex ; image >= firstSelectedCanvasIndex ; image--)
+        {
+          var nextImageToBeMovedImageEntry = PhotoSlideShowEditorVars.photoSlideShow.images[image];
+          PhotoSlideShowEditorVars.photoSlideShow.images[image] = imageBeingMovedImageEntry;
+          imageBeingMovedImageEntry = nextImageToBeMovedImageEntry;
+        }
+
+
+        // Next reset the canvas positions based on current index in array
+        for (image = currentlySelectedCanvasIndex ; image >= firstSelectedCanvasIndex ; image--)
+        {
+          PhotoSlideShowEditorVars.photoSlideShow.images[image].htmlCanvas.style.top = calculateTopY(image).toString() + 'px';
+          PhotoSlideShowEditorVars.photoSlideShow.images[image].htmlCanvas.style.left = calculateLeftX(image).toString() + 'px';
+        }
+      }
     }
     PhotoSlideShowEditorVars.currentlySelectedCanvas.style.border = "1px solid black";
     PhotoSlideShowEditorVars.currentlySelectedCanvas = undefined;
   }
 }
 
+
+
+// *********************************************************************************************************
+//  Find the index of the canvas in the photo gallery array that matches the id string passed
+//    Return -1 if there is not a match
+// *********************************************************************************************************
 
 function findCurrentIndexOfCanvas(canvasId)
 {
