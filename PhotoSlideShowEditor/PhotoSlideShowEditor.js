@@ -37,8 +37,11 @@ var PhotoSlideShowEditorVars = {
   currentImageSelectedByUser:0,
   imageFilesLoaded:0,
 
-  // Used for moving photos in slide show
-  currentlySelectedCanvas:undefined
+  // Used for moving photos in gallery
+  currentlySelectedCanvas:undefined,
+  
+  // Used for caption editing mode (single photo slide show)
+  currentCaptionEditingImage:0
   
 };
 
@@ -123,40 +126,10 @@ function addImageToEndOfGallery(evt)
   PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name,
         caption:'Caption ' + (PhotoSlideShowEditorVars.photoSlideShow.images.length + 1).toString(),
         htmlCanvas:theCanvas,
-        imageFileBlob:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]});
+        imageObj:evt.target});
   
-  ctx = theCanvas.getContext("2d");
-  ctx.clearRect(0, 0, theCanvas.width, theCanvas.height);
-  // Figure out how to display
-  var x = 0;
-  var y = 0;
-  var width = ctx.canvas.width;
-  var height = ctx.canvas.height;
+  displayImageInCanvas (theCanvas,  evt.target);
   
-  // Figure out how to fit the image into canvas
-  //scaleFactorX = width / PhotoSlideShowEditorVars.currentImage.width;
-  //scaleFactorY = height / PhotoSlideShowEditorVars.currentImage.height;
-  scaleFactorX = width / evt.target.width;
-  scaleFactorY = height / evt.target.height;
-  if (scaleFactorX < scaleFactorY)      // Means the x dimension gets scaled more
-  {
-    //y = (height - (PhotoSlideShowEditorVars.currentImage.height * scaleFactorX)) / 2.0; // So we center the image vertically
-    //height = PhotoSlideShowEditorVars.currentImage.height * scaleFactorX;
-    y = (height - (evt.target.height * scaleFactorX)) / 2.0; // So we center the image vertically
-    height = evt.target.height * scaleFactorX;
-  }
-  else                                  // Means the y dimension gets scaled more
-  {
-    //x = (width - (PhotoSlideShowEditorVars.currentImage.width * scaleFactorY)) / 2.0; // So we center the image horizontally
-    //width = PhotoSlideShowEditorVars.currentImage.width * scaleFactorY;
-    x = (width - (evt.target.width * scaleFactorY)) / 2.0; // So we center the image horizontally
-    width = evt.target.width * scaleFactorY;
-    
-  }
-  
-  //ctx.drawImage(PhotoSlideShowEditorVars.currentImage, x, y, width, height);
-  ctx.drawImage(evt.target, x, y, width, height);
-
   // Set it up to call outselves again for the next image if needed
   
   if ((PhotoSlideShowEditorVars.currentImageSelectedByUser + 1) < PhotoSlideShowEditorVars.imageFilesSelectedByUser.length )
@@ -185,6 +158,43 @@ function calculateLeftX (imageIndex)
   return PhotoSlideShowEditorVars.photoGalleryDiv.offsetLeft + (imageIndex % PhotoSlideShowEditorVars.photoGalleryHorizontalImages) *
                   (PhotoSlideShowEditorVars.photoGalleryElementWidth + PhotoSlideShowEditorVars.photoGalleryInterSpace)
 }
+
+
+
+// *********************************************************************************************************
+//  Display a loaded image (Image class) in the specified canvas
+// *********************************************************************************************************
+
+function displayImageInCanvas(theCanvas, loadedImage)
+{
+  ctx = theCanvas.getContext("2d");
+  ctx.clearRect(0, 0, theCanvas.width, theCanvas.height);
+  // Figure out how to display
+  var x = 0;
+  var y = 0;
+  var width = ctx.canvas.width;
+  var height = ctx.canvas.height;
+  
+  // Figure out how to fit the image into canvas
+  scaleFactorX = width / loadedImage.width;
+  scaleFactorY = height / loadedImage.height;
+  if (scaleFactorX < scaleFactorY)      // Means the x dimension gets scaled more
+  {
+    y = (height - (loadedImage.height * scaleFactorX)) / 2.0; // So we center the image vertically
+    height = loadedImage.height * scaleFactorX;
+  }
+  else                                  // Means the y dimension gets scaled more
+  {
+    x = (width - (loadedImage.width * scaleFactorY)) / 2.0; // So we center the image horizontally
+    width = loadedImage.width * scaleFactorY;
+    
+  }
+  
+  ctx.drawImage(loadedImage, x, y, width, height);
+
+  
+}
+
 
 // *********************************************************************************************************
 //  Add a photo or photos to the end of the slide show, a callback
@@ -395,27 +405,78 @@ function photoGalleryElementMouseClick (evt)
 
 // *********************************************************************************************************
 //  A double click event occured on a photo gallery canvas (photo) so we go into edit mode where one
-//  photo at a time is display (like a slide show)
+//  photo at a time is display (like a slide show) and allow the user to edit the caption.
 // *********************************************************************************************************
 
 function editPhotoEvent (evt)
 {
-  var photoSlideShowBackgroundDiv = document.getElementById('photoSlideShowBackground');
-  photoSlideShowBackgroundDiv.style.display='initial';
-  var photoSlideShowCanvas = document.getElementById('photoSlideShowCanvas');
-  photoSlideShowCanvas.style.display='initial';
-  var leftArrow = document.getElementById('leftArrow');
-  leftArrow.style.display='initial';
-  var rightArrow = document.getElementById('rightArrow');
-  rightArrow.style.display='initial';
+  showOrHideCaptionEditingModeElements('initial');
+  PhotoSlideShowEditorVars.currentCaptionEditingImage = findCurrentIndexOfCanvas(evt.currentTarget.id);
   var photoCaption = document.getElementById('photoCaption');
-  photoCaption.style.display='initial';
-  currentlySelectedCanvasIndex = findCurrentIndexOfCanvas(evt.currentTarget.id);
-  photoCaption.value = PhotoSlideShowEditorVars.photoSlideShow.images[currentlySelectedCanvasIndex].caption;
+  photoCaption.value = PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].caption;
   
+  displayImageInCaptionEditingMode();
+  
+}
+
+function displayImageInCaptionEditingMode()
+{
+  displayImageInCanvas (photoSlideShowCanvas, PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].imageObj);
+}
+
+function displayImageCaptionEditingModeLoadCallback(evt)
+{
+  var photoSlideShowCanvas = document.getElementById('photoSlideShowCanvas');
+}
+
+// *********************************************************************************************************
+//  User canceled out of caption editing mode, so hide associated elements
+// *********************************************************************************************************
+
+function cancelSlideShowEditPressed()
+{
+  showOrHideCaptionEditingModeElements('none');
+   
+}
 
 
-  
+
+// *********************************************************************************************************
+//  User used "Ok" button to finish caption editing mode, so hide associated elements, and update
+//  caption for currently displayed photo
+// *********************************************************************************************************
+
+function okSlideShowEditPressed()
+{
+  var photoCaption = document.getElementById('photoCaption');
+  PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].caption = photoCaption.value;
+  showOrHideCaptionEditingModeElements('none');
+   
+}
+
+
+// *********************************************************************************************************
+//  Function to set the display mode of the caption editing elements
+//  displayMode = 'initial' to enable and 'none' to disable
+// *********************************************************************************************************
+
+function showOrHideCaptionEditingModeElements(displayMode)
+{
+  var photoSlideShowBackgroundDiv = document.getElementById('photoSlideShowBackground');
+  photoSlideShowBackgroundDiv.style.display=displayMode;
+  var photoSlideShowCanvas = document.getElementById('photoSlideShowCanvas');
+  photoSlideShowCanvas.style.display=displayMode;
+  var leftArrow = document.getElementById('leftArrow');
+  leftArrow.style.display=displayMode;
+  var rightArrow = document.getElementById('rightArrow');
+  rightArrow.style.display=displayMode;
+  var photoCaption = document.getElementById('photoCaption');
+  photoCaption.style.display=displayMode;
+  var cancelSlideShowEdit = document.getElementById('cancelSlideShowEdit');
+  cancelSlideShowEdit.style.display=displayMode;
+  var okSlideShowEdit = document.getElementById('okSlideShowEdit');
+  okSlideShowEdit.style.display=displayMode;
+
 }
 
 // *********************************************************************************************************
