@@ -412,21 +412,53 @@ function editPhotoEvent (evt)
 {
   showOrHideCaptionEditingModeElements('initial');
   PhotoSlideShowEditorVars.currentCaptionEditingImage = findCurrentIndexOfCanvas(evt.currentTarget.id);
-  var photoCaption = document.getElementById('photoCaption');
-  photoCaption.value = PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].caption;
+  displayCaption();
   
   displayImageInCaptionEditingMode();
   
 }
 
+function displayCaption()
+{
+  var photoCaption = document.getElementById('photoCaption');
+  photoCaption.value = PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].caption;
+}
+
 function displayImageInCaptionEditingMode()
 {
+  var photoSlideShowCanvas = document.getElementById('photoSlideShowCanvas');
   displayImageInCanvas (photoSlideShowCanvas, PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].imageObj);
 }
 
-function displayImageCaptionEditingModeLoadCallback(evt)
+function leftArrowPressed()
 {
-  var photoSlideShowCanvas = document.getElementById('photoSlideShowCanvas');
+  saveCaptionText();
+  if (PhotoSlideShowEditorVars.currentCaptionEditingImage === 0)
+  {
+    PhotoSlideShowEditorVars.currentCaptionEditingImage = PhotoSlideShowEditorVars.photoSlideShow.images.length-1;
+  }
+  else
+  {
+    PhotoSlideShowEditorVars.currentCaptionEditingImage--;
+  }
+  displayCaption();
+  displayImageInCaptionEditingMode();
+}
+
+function rightArrowPressed()
+{
+  saveCaptionText();
+  if (PhotoSlideShowEditorVars.currentCaptionEditingImage == PhotoSlideShowEditorVars.photoSlideShow.images.length-1)
+  {
+    PhotoSlideShowEditorVars.currentCaptionEditingImage = 0;
+  }
+  else
+  {
+    PhotoSlideShowEditorVars.currentCaptionEditingImage++;
+  }
+  
+  displayCaption();
+  displayImageInCaptionEditingMode();
 }
 
 // *********************************************************************************************************
@@ -448,10 +480,15 @@ function cancelSlideShowEditPressed()
 
 function okSlideShowEditPressed()
 {
+  showOrHideCaptionEditingModeElements('none');
+  saveCaptionText();
+   
+}
+
+function saveCaptionText()
+{
   var photoCaption = document.getElementById('photoCaption');
   PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].caption = photoCaption.value;
-  showOrHideCaptionEditingModeElements('none');
-   
 }
 
 
