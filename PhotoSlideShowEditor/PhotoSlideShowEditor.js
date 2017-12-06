@@ -81,7 +81,7 @@ function CreateNewPhotoSlideShow()
   turnOnAddAndSaveButtons();
   
   // Display the default information about slide show
-  displaySlideShowInforation(PhotoSlideShowEditorVars.photoSlideShow.displayWindow.title,
+  displaySlideShowInformation(PhotoSlideShowEditorVars.photoSlideShow.displayWindow.title,
           PhotoSlideShowEditorVars.photoSlideShow.displayWindow.width, PhotoSlideShowEditorVars.photoSlideShow.displayWindow.height);
 
   PhotoSlideShowEditorVars.photoGalleryDiv = document.getElementById('photoGalleryDiv');
@@ -114,6 +114,7 @@ function addImageToEndOfGallery(evt)
   theCanvas.style.top = topY.toString() + 'px';
   theCanvas.style.left = leftX.toString() + 'px';
   theCanvas.onclick = function(evt) { photoGalleryElementMouseClick(evt) };
+  theCanvas.ondblclick = function(evt) { editPhotoEvent(evt) };
   theCanvas.id = PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name;
 
   document.body.appendChild(theCanvas);
@@ -238,7 +239,7 @@ function turnOnAddAndSaveButtons()
 // *********************************************************************************************************
 
 
-function displaySlideShowInforation(title, width, height)
+function displaySlideShowInformation(title, width, height)
 {
   var titleText = document.getElementById('slideShowTitle');
   titleText.style.display='initial';
@@ -308,6 +309,25 @@ function saveSlideShow()
 
 
 
+
+
+// *********************************************************************************************************
+//  Event handler for a mouse click event on a photo gallery canvas (photo)
+//
+//  If this is the first mouse on a canvas photo we make the border red and simply log which canvas was
+//  selected
+//
+//  If a canvas has been already selected one of two things happens
+//
+//  If it is the same canvas that is already selected we make the border black and clear the canvas log
+//
+//  If it is another canvas we go about moving the previously selected canvas to the clicked canvas's
+//  location and slide things down or up depending on if we are moving the previously selected canvas
+//  up the list or down the list. The images array is modified to reflect the movement and the affected
+//  canvases have their x/y location changed. The canvas log is cleared and the previously seleced canvas
+//  has it's border set to black
+// *********************************************************************************************************
+
 function photoGalleryElementMouseClick (evt)
 {
   if (!PhotoSlideShowEditorVars.currentlySelectedCanvas)
@@ -373,6 +393,30 @@ function photoGalleryElementMouseClick (evt)
 }
 
 
+// *********************************************************************************************************
+//  A double click event occured on a photo gallery canvas (photo) so we go into edit mode where one
+//  photo at a time is display (like a slide show)
+// *********************************************************************************************************
+
+function editPhotoEvent (evt)
+{
+  var photoSlideShowBackgroundDiv = document.getElementById('photoSlideShowBackground');
+  photoSlideShowBackgroundDiv.style.display='initial';
+  var photoSlideShowCanvas = document.getElementById('photoSlideShowCanvas');
+  photoSlideShowCanvas.style.display='initial';
+  var leftArrow = document.getElementById('leftArrow');
+  leftArrow.style.display='initial';
+  var rightArrow = document.getElementById('rightArrow');
+  rightArrow.style.display='initial';
+  var photoCaption = document.getElementById('photoCaption');
+  photoCaption.style.display='initial';
+  currentlySelectedCanvasIndex = findCurrentIndexOfCanvas(evt.currentTarget.id);
+  photoCaption.value = PhotoSlideShowEditorVars.photoSlideShow.images[currentlySelectedCanvasIndex].caption;
+  
+
+
+  
+}
 
 // *********************************************************************************************************
 //  Find the index of the canvas in the photo gallery array that matches the id string passed
