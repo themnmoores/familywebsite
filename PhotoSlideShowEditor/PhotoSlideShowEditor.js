@@ -465,7 +465,7 @@ function rightArrowPressed()
 //  User canceled out of caption editing mode, so hide associated elements
 // *********************************************************************************************************
 
-function cancelSlideShowEditPressed()
+function cancelDuringCaptionEditPressed()
 {
   showOrHideCaptionEditingModeElements('none');
    
@@ -478,7 +478,7 @@ function cancelSlideShowEditPressed()
 //  caption for currently displayed photo
 // *********************************************************************************************************
 
-function okSlideShowEditPressed()
+function okDuringCaptionEditPressed()
 {
   showOrHideCaptionEditingModeElements('none');
   saveCaptionText();
@@ -509,10 +509,12 @@ function showOrHideCaptionEditingModeElements(displayMode)
   rightArrow.style.display=displayMode;
   var photoCaption = document.getElementById('photoCaption');
   photoCaption.style.display=displayMode;
-  var cancelSlideShowEdit = document.getElementById('cancelSlideShowEdit');
-  cancelSlideShowEdit.style.display=displayMode;
-  var okSlideShowEdit = document.getElementById('okSlideShowEdit');
-  okSlideShowEdit.style.display=displayMode;
+  var cancelPhotoCaptionEdit = document.getElementById('cancelPhotoCaptionEdit');
+  cancelPhotoCaptionEdit.style.display=displayMode;
+  var okPhotoCaptionEdit = document.getElementById('okPhotoCaptionEdit');
+  okPhotoCaptionEdit.style.display=displayMode;
+  var deletePhotoCaptionEdit = document.getElementById('deletePhotoCaptionEdit');
+  deletePhotoCaptionEdit.style.display=displayMode;
 
 }
 
