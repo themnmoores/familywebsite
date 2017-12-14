@@ -27,7 +27,7 @@ var PhotoSlideShowEditorVars = {
   currentImageNumberInSlideShow:0,
   
   // This is the photo slide show information that gets written to a JSON string
-  photoSlideShow:{displayWindow: {width: 800,height: 600,title: "New Slide Show"},images:[]},
+  photoSlideShow:{displayWindow: {width: 1200,height: 900,title: "New Slide Show"},images:[]},
   
   // The HTML sets up a <div> for us to use in drawing a photo gallery
   divForPhotoGallery:undefined,
@@ -518,6 +518,19 @@ function showOrHideCaptionEditingModeElements(displayMode)
 
 }
 
+
+
+
+// *********************************************************************************************************
+//  Delete a photo from the image array
+// *********************************************************************************************************
+
+function deletePhotoDuringCaptionEditPressed()
+{
+  
+}
+
+
 // *********************************************************************************************************
 //  Find the index of the canvas in the photo gallery array that matches the id string passed
 //    Return -1 if there is not a match
@@ -533,4 +546,18 @@ function findCurrentIndexOfCanvas(canvasId)
     }
   }
   return -1;
+}
+
+
+
+// *********************************************************************************************************
+//  Callback for the edit slide show button input. Loads the slide show json information and the photos
+//  into a gallery for editing
+// *********************************************************************************************************
+
+
+function EditPhotoSlideShow()
+{
+  
+  
 }

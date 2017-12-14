@@ -23,12 +23,17 @@ Most of the functionality is in javascript: resizePhotoZip.js
         <div>
             <label style="font-size:30px; margin-top: 100px; margin-left: 50px;" id="topLabel" for="fileToUpload">Select Images Zip File to Resize</label><br/><br/>
             <input accept=".zip" size="100" style="opacity:1.0; font-size:20px;margin-left: 80px;" type="file" name="fileToUpload" id="zipFile" onchange="StartImagesZipResize();"/>
+            <br><br>
+            <label style="font-size:20px;margin-left: 80px" id="slideShowWidth">Width:</label><input style="font-size:20px;margin-left:5px;" type="text" value="800" id="resizePhotoZipWidth">
+            <label style="font-size:20px;margin-left: 80px" id="slideShowHeight">Height:</label><input style="font-size:20px;margin-left:5px" type="text" value="600"  id="resizePhotoZipHeight">
+            <label style="font-size:20px;margin-left: 80px" id="slideShowHeight">JPEG Quality (1-100):</label><input style="font-size:20px;margin-left:5px" type="text" value="75"  id="resizePhotoZipJPEGQuality">
+            
           <br><br>
-            <label style="font-size:20px; margin-top: 100px; margin-left: 50px;" id="currentFileProcessing"></label><br/>             <br><br>
+            <label style="font-size:20px; margin-top: 100px; margin-left: 50px;" id="currentFileProcessing"></label><br>             <br><br>
             <div style="margin-left: 70px;" id="archiveFileContents" ></div>
             <br>
             <button  type="button" style="font-size:20px; margin-left: 60px; visibility:hidden;" id="ConvertHtmlZipFileButton" onclick="ConvertHtmlZipFile()">Convert HTML ZIP File</button>
         </div>
-        <canvas id="themnmooresResizeCanvas" width=800 height=600 style="border:4px solid #000000;"></canvas>
+        <canvas id="themnmooresResizeCanvas" width=800 height=600 style=";margin-left: 80px;border:4px solid #000000;"></canvas>
 	</body>
 </html>

@@ -21,7 +21,7 @@ var currentImage;
 var theResizeCanvas;
 var resizeTargetWidth = 800;
 var resizeTargetHeight = 600;
-
+var jpegQuality = 75;
 
 // *********************************************************************************************************
 // Handle some events
@@ -61,7 +61,12 @@ function StartImagesZipResize() {
   fileNames = undefined;
   zipArchiveToReadFrom = undefined;
 
-
+  // Get the size and jpeg quality
+  resizeTargetWidth = document.getElementById('resizePhotoZipWidth').value;
+  resizeTargetHeight = document.getElementById('resizePhotoZipHeight').value;
+  jpegQuality = document.getElementById('resizePhotoZipJPEGQuality').value / 100.0;
+  
+  
   var reader = new FileReader();
   reader.onloadend = ReadOfArchiveFileCompleted;
   reader.readAsArrayBuffer(file);
@@ -77,8 +82,8 @@ function StartImagesZipResize() {
 
 function ReadOfArchiveFileCompleted(evt)
 {
-  var resizeTargetWidth = 800;
-  var resizeTargetHeight = 600;
+  // var resizeTargetWidth = 800;
+  // var resizeTargetHeight = 600;
 
   theResizeCanvas = document.getElementById("themnmooresResizeCanvas");
   theResizeCanvas.width = resizeTargetWidth;
@@ -160,7 +165,7 @@ function resizeImage()
   
   // Now create a jpeg image from canvas
   //var canvasJpegDataURL = theResizeCanvas.toDataURL('image/jpeg', 0.85);
-  var canvasJpegBlob = theResizeCanvas.toBlob(jpegBlobCallback,'image/jpeg', 0.85);
+  var canvasJpegBlob = theResizeCanvas.toBlob(jpegBlobCallback,'image/jpeg', jpegQuality);
   
 
 }
