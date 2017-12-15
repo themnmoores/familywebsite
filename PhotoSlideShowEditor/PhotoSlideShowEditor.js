@@ -191,6 +191,8 @@ function displayImageInCanvas(theCanvas, loadedImage)
   }
   
   ctx.drawImage(loadedImage, x, y, width, height);
+  
+  
 
   
 }

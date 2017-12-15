@@ -119,9 +119,45 @@ function displayCurrentImage()
   }
   
   ctx.drawImage(currentImage, x, y, width, height);
+
+  // Now draw the left and right arrows
+  var midY = ctx.canvas.height / 2.0;
+  ctx.strokeStyle = "#7F7F7F";
+  ctx.lineWidth = 10;
+  ctx.lineJoin="round";
+  ctx.beginPath();
+  ctx.moveTo(50,midY-50);
+  ctx.lineTo(20,midY);
+  ctx.lineTo(50,midY+50);
+  ctx.moveTo(ctx.canvas.width-50,midY-50);
+  ctx.lineTo(ctx.canvas.width-20,midY);
+  ctx.lineTo(ctx.canvas.width-50,midY+50);
+  ctx.stroke();
   
 }
 
+
+// *********************************************************************************************************
+// Callback for when there is a mouse click in the canvas. If it is in the left 1/3 of the canvas we go
+// like a left arrow was pressed, if it is in the right 1/3 of the canvas we go like right arrow was
+// pressed.
+// *********************************************************************************************************
+
+
+function mouseClickInCanvas(evt)
+{
+  ctx = theCanvas.getContext("2d");
+  if ( evt.offsetX < ctx.canvas.width/3)
+  {
+    leftArrowPressed();
+  }
+  
+  if (evt.offsetX > ctx.canvas.width - ctx.canvas.width/3)
+  {
+    rightArrowPressed();
+  }
+  
+}
 
 // *********************************************************************************************************
 // Callback for the right arrow being pressed, goes to the next higher (N+1) image in the list
@@ -141,7 +177,7 @@ function rightArrowPressed()
     currentImageNumberInSlideShow++;
   }
   
-  leftArrow.style.visibility = "visible";
+  //leftArrow.style.visibility = "visible";
   // if (currentImageNumberInSlideShow == photoSlideShow.images.length-1)
   // {
   //   rightArrow.style.visibility = "hidden";
@@ -170,7 +206,7 @@ function leftArrowPressed()
     currentImageNumberInSlideShow--;
   }
   
-  rightArrow.style.visibility = "visible";
+  //rightArrow.style.visibility = "visible";
   // if (currentImageNumberInSlideShow === 0)
   // {
   //   leftArrow.style.visibility = "hidden";
