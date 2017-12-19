@@ -306,7 +306,8 @@ function saveSlideShow()
             caption: PhotoSlideShowEditorVars.photoSlideShow.images[image].caption});
   }
   var jsonStringForSlideShow = JSON.stringify(trimmedPhotoSlideShow);
-  jsonStringForSlideShow = jsonStringForSlideShow.replace('\'', '\\\'')
+  //jsonStringForSlideShow = jsonStringForSlideShow.replace('\'', '\\\'')
+  jsonStringForSlideShow = jsonStringForSlideShow.replace(/'/g, '\\\'');
   jsonStringForSlideShow = 'var photoFileListJSONString = \'' + jsonStringForSlideShow + '\'';
   zipArchive.file('photofilelist.js', jsonStringForSlideShow);
 
@@ -520,8 +521,8 @@ function showOrHideCaptionEditingModeElements(displayMode)
   cancelPhotoCaptionEdit.style.display=displayMode;
   var okPhotoCaptionEdit = document.getElementById('okPhotoCaptionEdit');
   okPhotoCaptionEdit.style.display=displayMode;
-  var deletePhotoCaptionEdit = document.getElementById('deletePhotoCaptionEdit');
-  deletePhotoCaptionEdit.style.display=displayMode;
+  // var deletePhotoCaptionEdit = document.getElementById('deletePhotoCaptionEdit');
+  // deletePhotoCaptionEdit.style.display=displayMode;
 
 }
 
