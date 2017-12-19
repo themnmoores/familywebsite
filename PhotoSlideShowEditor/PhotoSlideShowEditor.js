@@ -23,6 +23,7 @@ var PhotoSlideShowEditorVars = {
   photoGalleryCanvases:[],          // We hold the canvases here to all use to quickly move them or enable/disable display
   photoGalleryDiv:undefined,        // The Div containing the photo Gallery
   
+
   // Used when in slide show mode
   currentImageNumberInSlideShow:0,
   
@@ -126,7 +127,9 @@ function addImageToEndOfGallery(evt)
   PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name,
         caption:'Caption ' + (PhotoSlideShowEditorVars.photoSlideShow.images.length + 1).toString(),
         htmlCanvas:theCanvas,
-        imageObj:evt.target});
+        imageObj:evt.target,
+        imageFileBlob:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]
+  });
   
   displayImageInCanvas (theCanvas,  evt.target);
   
@@ -302,7 +305,9 @@ function saveSlideShow()
     trimmedPhotoSlideShow.images.push({src: PhotoSlideShowEditorVars.photoSlideShow.images[image].src,
             caption: PhotoSlideShowEditorVars.photoSlideShow.images[image].caption});
   }
-  var jsonStringForSlideShow = 'var photoFileListJSONString = \'' + JSON.stringify(trimmedPhotoSlideShow) + '\'';
+  var jsonStringForSlideShow = JSON.stringify(trimmedPhotoSlideShow);
+  jsonStringForSlideShow = jsonStringForSlideShow.replace('\'', '\\\'')
+  jsonStringForSlideShow = 'var photoFileListJSONString = \'' + jsonStringForSlideShow + '\'';
   zipArchive.file('photofilelist.js', jsonStringForSlideShow);
 
   // Save archive to generic photoSlideShow.zip in downloads
