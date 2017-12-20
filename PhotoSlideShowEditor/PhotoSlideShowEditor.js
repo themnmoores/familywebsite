@@ -355,6 +355,7 @@ function photoGalleryElementMouseClick (evt)
   {
     PhotoSlideShowEditorVars.currentlySelectedCanvas = document.getElementById(evt.currentTarget.id);
     PhotoSlideShowEditorVars.currentlySelectedCanvas.style.border = "3px solid red";
+    displayDeleteSelectedPhotoButton();
   }
   else
   {
@@ -410,9 +411,32 @@ function photoGalleryElementMouseClick (evt)
     }
     PhotoSlideShowEditorVars.currentlySelectedCanvas.style.border = "1px solid black";
     PhotoSlideShowEditorVars.currentlySelectedCanvas = undefined;
+    disableDeleteSelectedPhotoButton();
   }
 }
 
+
+
+// *********************************************************************************************************
+//  Code associated for deleted a selected photo in gallery view
+// *********************************************************************************************************
+
+function deleteSelectedPhoto()
+{
+  
+}
+
+function displayDeleteSelectedPhotoButton()
+{
+  var deleteSelectedPhotoButton = document.getElementById('deleteSelectedPhotoButton');
+  deleteSelectedPhotoButton.style.display='initial';
+}
+
+function disableDeleteSelectedPhotoButton()
+{
+  var deleteSelectedPhotoButton = document.getElementById('deleteSelectedPhotoButton');
+  deleteSelectedPhotoButton.style.display='none';
+}
 
 // *********************************************************************************************************
 //  A double click event occured on a photo gallery canvas (photo) so we go into captoin edit mode where one
@@ -422,6 +446,7 @@ function photoGalleryElementMouseClick (evt)
 function editPhotoCaptionEvent (evt)
 {
   showOrHideCaptionEditingModeElements('initial');
+  disableDeleteSelectedPhotoButton();
   PhotoSlideShowEditorVars.currentCaptionEditingImage = findCurrentIndexOfCanvas(evt.currentTarget.id);
   displayCaptionInCaptionEditingMode();
   
