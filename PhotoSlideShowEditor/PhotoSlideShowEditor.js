@@ -42,7 +42,10 @@ var PhotoSlideShowEditorVars = {
   currentlySelectedCanvas:undefined,
   
   // Used for caption editing mode (single photo slide show)
-  currentCaptionEditingImage:0
+  currentCaptionEditingImage:0,
+  
+  // Used for loading stuff from a zip archive for slide show edit
+  zipArchiveToReadFrom:undefined
   
 };
 
@@ -118,7 +121,7 @@ function addImageToEndOfGallery(evt)
   theCanvas.style.top = topY.toString() + 'px';
   theCanvas.style.left = leftX.toString() + 'px';
   theCanvas.onclick = function(evt) { photoGalleryElementMouseClick(evt) };
-  theCanvas.ondblclick = function(evt) { editPhotoEvent(evt) };
+  theCanvas.ondblclick = function(evt) { editPhotoCaptionEvent(evt) };
   theCanvas.id = PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name;
 
   document.body.appendChild(theCanvas);
@@ -412,21 +415,21 @@ function photoGalleryElementMouseClick (evt)
 
 
 // *********************************************************************************************************
-//  A double click event occured on a photo gallery canvas (photo) so we go into edit mode where one
-//  photo at a time is display (like a slide show) and allow the user to edit the caption.
+//  A double click event occured on a photo gallery canvas (photo) so we go into captoin edit mode where one
+//  photo at a time is displayed (like a slide show) and allow the user to edit the captions.
 // *********************************************************************************************************
 
-function editPhotoEvent (evt)
+function editPhotoCaptionEvent (evt)
 {
   showOrHideCaptionEditingModeElements('initial');
   PhotoSlideShowEditorVars.currentCaptionEditingImage = findCurrentIndexOfCanvas(evt.currentTarget.id);
-  displayCaption();
+  displayCaptionInCaptionEditingMode();
   
   displayImageInCaptionEditingMode();
   
 }
 
-function displayCaption()
+function displayCaptionInCaptionEditingMode()
 {
   var photoCaption = document.getElementById('photoCaption');
   photoCaption.value = PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].caption;
@@ -438,7 +441,7 @@ function displayImageInCaptionEditingMode()
   displayImageInCanvas (photoSlideShowCanvas, PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentCaptionEditingImage].imageObj);
 }
 
-function leftArrowPressed()
+function leftArrowPressedInCaptionEditingMode()
 {
   saveCaptionText();
   if (PhotoSlideShowEditorVars.currentCaptionEditingImage === 0)
@@ -449,11 +452,11 @@ function leftArrowPressed()
   {
     PhotoSlideShowEditorVars.currentCaptionEditingImage--;
   }
-  displayCaption();
+  displayCaptionInCaptionEditingMode();
   displayImageInCaptionEditingMode();
 }
 
-function rightArrowPressed()
+function rightArrowPressedInCaptionEditingMode()
 {
   saveCaptionText();
   if (PhotoSlideShowEditorVars.currentCaptionEditingImage == PhotoSlideShowEditorVars.photoSlideShow.images.length-1)
@@ -465,7 +468,7 @@ function rightArrowPressed()
     PhotoSlideShowEditorVars.currentCaptionEditingImage++;
   }
   
-  displayCaption();
+  displayCaptionInCaptionEditingMode();
   displayImageInCaptionEditingMode();
 }
 
@@ -566,6 +569,135 @@ function findCurrentIndexOfCanvas(canvasId)
 
 function EditPhotoSlideShow()
 {
+  // First turn off the create and edit buttons and on the save and addd buttons for UI
+  turnOffCreateAndEditButtons()  ;
+  turnOnAddAndSaveButtons();
+  PhotoSlideShowEditorVars.photoGalleryDiv = document.getElementById('photoGalleryDiv');
+
+  var files = document.getElementById('editSlideShow').files;
+  if (files.length === 0) {
+      alert("No file to upload!!!!");
+      return;
+  }
+  var file = files[0];
+
+  var reader = new FileReader();
+  reader.onloadend = ReadOfArchiveFileCompleted;
+  reader.readAsArrayBuffer(file);
   
+}
+
+
+// *********************************************************************************************************
+// The read of the zip file is complete so get the names of the files in the zip archive, and start the
+// async processing loading the jpeg files into the photo.
+// *********************************************************************************************************
+
+
+function ReadOfArchiveFileCompleted(evt)
+{
+
+  var photoSlideZipFile = new JSZip();
+
+  photoSlideZipFile.loadAsync(evt.target.result)
+  .then(function success(zip)
+  {
+    console.log('Read zip file');
+
+    PhotoSlideShowEditorVars.zipArchiveToReadFrom = zip;
+    
+    // Get the json information for the slide show
+    zip.file('photofilelist.js').async("string")
+    .then(function success(content)
+    {
+      // convert to photo slide show json
+      jsonForPhotoSlideShow = content.replace('var photoFileListJSONString = \'{', '{');
+      jsonForPhotoSlideShow = jsonForPhotoSlideShow.replace('}]}\'','}]}');
+      jsonForPhotoSlideShow = jsonForPhotoSlideShow.replace(/\\\'/g, '\'');
+      PhotoSlideShowEditorVars.photoSlideShow = JSON.parse(jsonForPhotoSlideShow);
+      
+      displaySlideShowInformation(PhotoSlideShowEditorVars.photoSlideShow.displayWindow.title,
+          PhotoSlideShowEditorVars.photoSlideShow.displayWindow.width, PhotoSlideShowEditorVars.photoSlideShow.displayWindow.height);
+          
+      // Add htmlCanvas, imageObj and imageFileBlob to each entry in images array
+      for (image = 0 ; image < PhotoSlideShowEditorVars.photoSlideShow.images.length ; image++)
+      {
+        PhotoSlideShowEditorVars.photoSlideShow.images[image].htmlCanvas = undefined;
+        PhotoSlideShowEditorVars.photoSlideShow.images[image].imageObj = undefined;
+        PhotoSlideShowEditorVars.photoSlideShow.images[image].imageFileBlob = undefined;
+      }
+      
+      // Load up the image files as blobs
+      PhotoSlideShowEditorVars.currentImageSelectedByUser = 0;
+      window.setTimeout(LoadZipFileImages(), 10);
+    },
+    function error(e){
+      alert("No photofilelist.js file in archive!!!!");
+      return;
+    });
+  });
+}
+
+
+function LoadZipFileImages()
+{
+  PhotoSlideShowEditorVars.zipArchiveToReadFrom.file(PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageSelectedByUser].src).async("blob")
+  .then(function success(imageFileContent)
+  {
+    PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageSelectedByUser].imageFileBlob = imageFileContent;
+    PhotoSlideShowEditorVars.currentImageSelectedByUser++;
+    if (PhotoSlideShowEditorVars.currentImageSelectedByUser < PhotoSlideShowEditorVars.photoSlideShow.images.length)
+    {
+      window.setTimeout(LoadZipFileImages(), 10);
+    }
+    else
+    {
+      // Start the async process of adding images to a photo gallery
+      PhotoSlideShowEditorVars.currentImageSelectedByUser = 0;
+      var theImage = new Image();
+      theImage.onload = EditSlideShowAddImageToEndOfGallery;
+      theImage.src = URL.createObjectURL(PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageSelectedByUser].imageFileBlob);
+    }
+  },
+  function error(e){
+    alert("Missing image file" + PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageSelectedByUser].src);
+    return;
+  });
+  
+}
+
+function EditSlideShowAddImageToEndOfGallery(evt)
+{
+  var topY = calculateTopY(PhotoSlideShowEditorVars.currentImageSelectedByUser);
+  var leftX = calculateLeftX(PhotoSlideShowEditorVars.currentImageSelectedByUser);
+
+  var theCanvas = document.createElement('canvas');
+  theCanvas.width = PhotoSlideShowEditorVars.photoGalleryElementWidth;
+  theCanvas.height = PhotoSlideShowEditorVars.photoGalleryElementHeight;
+  theCanvas.style.position = "absolute";
+  theCanvas.style.border = "1px solid black";
+  theCanvas.style.top = topY.toString() + 'px';
+  theCanvas.style.left = leftX.toString() + 'px';
+  theCanvas.onclick = function(evt) { photoGalleryElementMouseClick(evt) };
+  theCanvas.ondblclick = function(evt) { editPhotoCaptionEvent(evt) };
+  theCanvas.id = PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageSelectedByUser].src;
+
+  document.body.appendChild(theCanvas);
+  
+  // ****  Add canvas and image object to images array
+  PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageSelectedByUser].htmlCanvas = theCanvas;
+  PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageSelectedByUser].imageObj = evt.target;
+
+  displayImageInCanvas (theCanvas,  evt.target);
+  
+  // Set it up to call outselves again for the next image if needed
+  
+  if ((PhotoSlideShowEditorVars.currentImageSelectedByUser + 1) < PhotoSlideShowEditorVars.photoSlideShow.images.length )
+  {
+    PhotoSlideShowEditorVars.currentImageSelectedByUser++;
+    var theImage = new Image();
+    theImage.onload = EditSlideShowAddImageToEndOfGallery;
+    theImage.src = URL.createObjectURL(PhotoSlideShowEditorVars.photoSlideShow.images[PhotoSlideShowEditorVars.currentImageSelectedByUser].imageFileBlob);
+  }
   
 }

@@ -47,8 +47,8 @@ Most of the functionality is in javascript:
     <!-- This stuff is for caption editing of a slide show (individual photo display) and is not displayed on page load -->
     <div id="photoSlideShowBackground" style="display:none;position:absolute;width:4000px;height:4000px;top:0px;left:0px;background-color:black;z-index:100;">
       <canvas id="photoSlideShowCanvas" width=800 height=600 style="display:none;position:absolute;top:40px;left:400px;background-color:black;border:1px solid white"></canvas>
-      <img id="leftArrow" height="80px" src="../pictures/wLeftArrow512.png" style="display:none;position:absolute;top:300px;left:300px" onclick="leftArrowPressed()">
-      <img id="rightArrow" height="80px" src="../pictures/wRightArrow512.png" style="display:none;position:absolute;top:300px;left:1220px" onclick="rightArrowPressed()">
+      <img id="leftArrow" height="80px" src="../pictures/wLeftArrow512.png" style="display:none;position:absolute;top:300px;left:300px" onclick="leftArrowPressedInCaptionEditingMode()">
+      <img id="rightArrow" height="80px" src="../pictures/wRightArrow512.png" style="display:none;position:absolute;top:300px;left:1220px" onclick="rightArrowPressedInCaptionEditingMode()">
       <textarea style="color:white;display:none;font-size:16px;position:absolute;width:800px;height:160px;top:660px;left:400px;border:1px solid white;background-color:black;" id="photoCaption"></textarea>
       <input type="button" style="display:none;opacity:1.0; font-size:20px;position:absolute;top:460px;left:1280px;width:120px" id="okPhotoCaptionEdit" value="Ok" onclick="okDuringCaptionEditPressed()" />
       <input type="button" style="display:none;opacity:1.0; font-size:20px;position:absolute;top:500px;left:1280px;width:120px" id="cancelPhotoCaptionEdit" value="Cancel" onclick="cancelDuringCaptionEditPressed()" />
