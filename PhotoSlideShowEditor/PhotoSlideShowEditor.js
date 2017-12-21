@@ -451,7 +451,7 @@ function editPhotoCaptionEvent (evt)
   displayCaptionInCaptionEditingMode();
   
   displayImageInCaptionEditingMode();
-  
+  window.scrollTo(0, 0);
 }
 
 function displayCaptionInCaptionEditingMode()
