@@ -24,8 +24,9 @@ var PhotoSlideShowEditorVars = {
   photoGalleryDiv:undefined,        // The Div containing the photo Gallery
   
 
-  // Used when in slide show mode
+  // Used when in caption editing (slide show) mode
   currentImageNumberInSlideShow:0,
+  currentGalleryScrollPosition:0,
   
   // This is the photo slide show information that gets written to a JSON string
   photoSlideShow:{displayWindow: {width: 1200,height: 900,title: "New Slide Show"},images:[]},
@@ -424,6 +425,7 @@ function photoGalleryElementMouseClick (evt)
 function deleteSelectedPhoto()
 {
   
+  photoSlideShow.images.splice(PhotoSlideShowEditorVars.PhotoSlideShowEditorVars.currentImageNumberInSlideShow, 1);
 }
 
 function displayDeleteSelectedPhotoButton()
@@ -451,6 +453,8 @@ function editPhotoCaptionEvent (evt)
   displayCaptionInCaptionEditingMode();
   
   displayImageInCaptionEditingMode();
+  
+  PhotoSlideShowEditorVars.currentGalleryScrollPosition = window.scrollY;
   window.scrollTo(0, 0);
 }
 
@@ -504,6 +508,8 @@ function rightArrowPressedInCaptionEditingMode()
 function cancelDuringCaptionEditPressed()
 {
   showOrHideCaptionEditingModeElements('none');
+  window.scrollTo(0, PhotoSlideShowEditorVars.currentGalleryScrollPosition);
+  
    
 }
 
@@ -516,9 +522,8 @@ function cancelDuringCaptionEditPressed()
 
 function okDuringCaptionEditPressed()
 {
-  showOrHideCaptionEditingModeElements('none');
   saveCaptionText();
-   
+  cancelDuringCaptionEditPressed();
 }
 
 function saveCaptionText()
@@ -563,6 +568,7 @@ function showOrHideCaptionEditingModeElements(displayMode)
 
 function deletePhotoDuringCaptionEditPressed()
 {
+  
   
 }
 
