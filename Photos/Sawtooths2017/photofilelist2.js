@@ -1,5 +1,5 @@
 var photoFileListJSONString = '{' +
-'"displayWindow": {"width": 1200,"height": 900,"title": "Sawtooths 2017"},' +
+'"displayWindow": {"width": 1000,"height": 750,"title": "Sawtooths 2017"},' +
 '"images": [' +
 '{"src": "sawtooths2017.png","caption": ""},' +
 '{"src": "1.jpg","caption": "Day 1: Iron Creek trailhead to Lake 8271 south of Sawtooth Lake."},' +
