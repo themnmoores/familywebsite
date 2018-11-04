@@ -121,8 +121,8 @@ function displayCurrentImage()
   var height = ctx.canvas.height;
   
   // Figure out how to fit the image to the slide show
-  scaleFactorX = width / currentImage.width;
-  scaleFactorY = height / currentImage.height;
+  scaleFactorX = (width + 1) / currentImage.width;
+  scaleFactorY = (height + 1) / currentImage.height;
   if (scaleFactorX < scaleFactorY)      // Means the x dimension gets scaled more
   {
     y = (height - (currentImage.height * scaleFactorX)) / 2.0; // So we center the image vertically
