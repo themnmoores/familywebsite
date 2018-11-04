@@ -120,7 +120,7 @@ function displayCurrentImage()
   var width = ctx.canvas.width;
   var height = ctx.canvas.height;
   
-  // Figure out how to fit the image to the slide show
+  // Figure out how to fit the image to the slide show, we nudge by 1 to make sure we fill the frame.
   scaleFactorX = (width + 1) / currentImage.width;
   scaleFactorY = (height + 1) / currentImage.height;
   if (scaleFactorX < scaleFactorY)      // Means the x dimension gets scaled more
