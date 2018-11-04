@@ -58,9 +58,19 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
   theCanvas.style.borderWidth="3px";
   theCanvas.style.borderStyle = "solid";
   theCanvas.style.borderColor="#000000";
+  theCanvas.style.marginLeft = "auto";
+  theCanvas.style.marginRight = "auto";
+  theCanvas.style.marginTop = "12px";
 
   caption = document.getElementById(captionID);
   caption.style.width = theCanvas.width.toString() + "px";
+  caption.style.fontFamily = "Arial,serif";
+  caption.style.fontSize = "16px";
+  caption.style.lineHeight = "1.4";
+  caption.style.marginLeft = "auto";
+  caption.style.marginRight = "auto";
+  caption.style.marginTop = "12px";
+  caption.style.textAlign = "left";
   leftArrow =  document.getElementById(leftArrowID);
   rightArrow =  document.getElementById(rightArrowID);
   
@@ -69,6 +79,13 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
 
   
   theTitle = document.getElementById(titleID);
+  theTitle.style.fontFamily = "Arial,serif";
+  theTitle.style.fontSize = "20px";
+  theTitle.style.marginLeft = "auto";
+  theTitle.style.marginRight = "auto";
+  theTitle.style.marginTop = "10px";
+  theTitle.style.textAlign = "center";
+  
   theTitle.innerHTML = '<b>' + photoSlideShow.displayWindow.title + '</b>';
   
   currentImageNumberInSlideShow = 0;
