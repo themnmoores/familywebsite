@@ -1,7 +1,13 @@
 <!doctype html>
+<!-- Generic HTML for all photo display pages on themnmoores.net  most of the css formatting is
+done in the file photoslideshow.js
+
+Copyright 2018 Richard Moore
+
+-->
 <html>
   <head>
-    <!-- <meta name="viewport" content="width=1200"> -->
+    <meta name="viewport" content="width=1300">
     <script src="../../formatting.js"></script>
     <script src="photofilelist.js"></script>
     <script src="../../photoslideshow.js"></script>
@@ -29,12 +35,12 @@
     
     <!-- Create simple photo viewer -->
 
-    <div style="text-align:center">
+    <div style="text-align:center;">
       
       <div style="margin-left:auto;margin-right:auto;margin-top:20px">
-        <p id="themnmooresTitle">title</p>
+        <textarea id="themnmooresTitle" >title</textarea>
         <canvas id="themnmooresPhotoCanvas" onclick="mouseClickInCanvas(event)"></canvas>
-        <p id="themnmooresCaption"></p>
+        <textarea id="themnmooresCaption"></textarea>
       
         <script>
           initializePhotoSlideShow("themnmooresPhotoCanvas", "themnmooresTitle", "themnmooresCaption", "themnmooresLeft", "themnmooresRight");

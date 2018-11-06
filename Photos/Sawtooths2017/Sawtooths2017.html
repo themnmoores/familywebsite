@@ -1,9 +1,15 @@
 <!doctype html>
+<!-- Generic HTML for all photo display pages on themnmoores.net  most of the css formatting is
+done in the file photoslideshow.js
+
+Copyright 2018 Richard Moore
+
+-->
 <html>
   <head>
-    <meta name="viewport" content="width=1200">
+    <meta name="viewport" content="width=1300">
     <script src="../../formatting.js"></script>
-    <script src="photofilelist2.js"></script>
+    <script src="photofilelist.js"></script>
     <script src="../../photoslideshow.js"></script>
 
     <script>
@@ -31,12 +37,10 @@
 
     <div style="text-align:center;">
       
-      <div style="margin-left:auto;margin-right:auto;margin-top:40px">
-        <p id="themnmooresTitle" style="font-family:Arial, serif;font-size: 20px;margin-left:auto;margin-right:auto;text-align: center;margin-bottom:0">title</p>
-        <!-- <img id="themnmooresLeft" height="80px" src="../../pictures/leftArrow512.png" style="margin-bottom:260px" onclick="leftArrowPressed()"> -->
-        <canvas id="themnmooresPhotoCanvas" style="margin-left:auto;margin-right:auto;" onclick="mouseClickInCanvas(event)"></canvas>
-        <!-- <img id="themnmooresRight" height="80px" src="../../pictures/rightArrow512.png" style="margin-bottom:260px" onclick="rightArrowPressed()"> -->
-        <p id="themnmooresCaption" style=";margin-top:10px;font-family:Arial, serif;font-size: 18px;margin-left:auto;margin-right:auto;text-align: left;"></p>
+      <div style="margin-left:auto;margin-right:auto;margin-top:20px">
+        <textarea id="themnmooresTitle" >title</textarea>
+        <canvas id="themnmooresPhotoCanvas" onclick="mouseClickInCanvas(event)"></canvas>
+        <textarea id="themnmooresCaption"></textarea>
       
         <script>
           initializePhotoSlideShow("themnmooresPhotoCanvas", "themnmooresTitle", "themnmooresCaption", "themnmooresLeft", "themnmooresRight");

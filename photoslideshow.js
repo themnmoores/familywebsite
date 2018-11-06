@@ -52,6 +52,10 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
   // populatePhotoListJSONString();
   photoSlideShow = JSON.parse(photoFileListJSONString);
   
+  // So I do not have to change all the HTML files (does not work)
+  //tviewport = document.getElementsByName("viewport");
+  //tviewport[0].setAttribute("content", "width=1300");
+  
   theCanvas = document.getElementById(canvasID);
   theCanvas.height=Number(photoSlideShow.displayWindow.height);
   theCanvas.width=Number(photoSlideShow.displayWindow.width);
@@ -63,14 +67,23 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
   theCanvas.style.marginTop = "12px";
 
   caption = document.getElementById(captionID);
+  caption.readOnly = true;
+  caption.autoFocus = false;
   caption.style.width = theCanvas.width.toString() + "px";
   caption.style.fontFamily = "Arial,serif";
-  caption.style.fontSize = "16px";
-  caption.style.lineHeight = "1.4";
+  caption.style.fontSize = "100%";
+  caption.style.lineHeight = "1.2";
   caption.style.marginLeft = "auto";
   caption.style.marginRight = "auto";
   caption.style.marginTop = "12px";
   caption.style.textAlign = "left";
+  caption.style.backgroundColor = document.body.style.backgroundColor;
+  caption.style.borderStyle = "hidden";
+  caption.rows = 10;
+  caption.cols = 100;
+  caption.readOnly = true;
+  caption.autoFocus = false;
+  
   leftArrow =  document.getElementById(leftArrowID);
   rightArrow =  document.getElementById(rightArrowID);
   
@@ -79,14 +92,22 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
 
   
   theTitle = document.getElementById(titleID);
+  theTitle.readOnly = true;
+  theTitle.autoFocus = false;
+  theTitle.style.width = theCanvas.width.toString() + "px";
   theTitle.style.fontFamily = "Arial,serif";
-  theTitle.style.fontSize = "20px";
+  theTitle.style.fontSize = "120%";
+  theTitle.style.fontWeight = "bold";
   theTitle.style.marginLeft = "auto";
   theTitle.style.marginRight = "auto";
   theTitle.style.marginTop = "10px";
   theTitle.style.textAlign = "center";
+  theTitle.style.backgroundColor = document.body.style.backgroundColor;
+  theTitle.style.borderStyle = "hidden";
+  theTitle.rows = 1;
+  theTitle.cols = 100;
   
-  theTitle.innerHTML = '<b>' + photoSlideShow.displayWindow.title + '</b>';
+  theTitle.innerHTML = photoSlideShow.displayWindow.title;
   
   currentImageNumberInSlideShow = 0;
   setCurrentImage(photoSlideShow.images[currentImageNumberInSlideShow].src,photoSlideShow.images[currentImageNumberInSlideShow].caption);
