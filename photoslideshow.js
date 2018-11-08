@@ -65,13 +65,18 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
   theCanvas.style.marginLeft = "auto";
   theCanvas.style.marginRight = "auto";
   theCanvas.style.marginTop = "12px";
+  
+  clientW = document.documentElement.clientWidth;
+  deviceW = window.screen.width;
 
   caption = document.getElementById(captionID);
   caption.readOnly = true;
   caption.autoFocus = false;
   caption.style.width = theCanvas.width.toString() + "px";
   caption.style.fontFamily = "Arial,serif";
-  caption.style.fontSize = "100%";
+  //caption.style.fontSize = "100%";
+  fontScalePercentage = (clientW / deviceW) * 100.0;
+  caption.style.fontSize = fontScalePercentage.toString() + "%";
   caption.style.lineHeight = "1.2";
   caption.style.marginLeft = "auto";
   caption.style.marginRight = "auto";
@@ -79,7 +84,8 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
   caption.style.textAlign = "left";
   caption.style.backgroundColor = document.body.style.backgroundColor;
   caption.style.borderStyle = "hidden";
-  caption.rows = 10;
+  caption.style.textSizeAdjust = "none";
+  caption.rows = 30;
   caption.cols = 100;
   caption.readOnly = true;
   caption.autoFocus = false;
