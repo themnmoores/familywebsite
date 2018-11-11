@@ -17,11 +17,90 @@
 var currentImage;
 var currentImageNumberInSlideShow;
 var photoSlideShow;
-var caption;
-var theCanvas;
 
 var leftArrow;
 var rightArrow;
+
+// HTML elements used by photo slide show code
+
+var htmlCanvasID = "themnmooresPhotoCanvas";
+var htmlTitleID = "themnmooresTitle";
+var htmlCaptionID = "themnmooresCaption"
+var htmlLeftArrowID = "themnmooresLeft";
+var htmlRightArrowID = "themnmooresRight"
+
+// *********************************************************************************************************
+//   This function must be called before any other functions!!!!
+//
+//   Initializes the global variables, parses the JSON string that must be in a global variable
+//   photoFileListJSONString initialized by another javascript script file sourced by the HTML page before
+//   this function is called, and then initializes the elements for the photo slide show, and finally
+//   starts the process of loading the first photo for display.
+//
+//   Uses standard Javascript FileReader to read the file, which will call ReadOfArchiveFileCompleted
+//   below to open and process the zip file.
+//
+//    jsonFile    File containing json string information about slide show
+//    canvasID    The string ID of the canvas element on the HTML page to use for displaying the photos
+//    titleID     The string ID of the title element (text <p>) for the photo slide show title, defined in
+//                JSON string
+//    captionID   The string ID of the caption element (text <p>) for the caption text of each photo,
+//                defined in JSON string
+//    leftArrowID The string ID of the left arrow element (image) used to set up navigating down the photos
+//    rightArrowID The string ID of the right arrow element (image) used to set up navigating up the photos
+//
+// *********************************************************************************************************
+
+
+function initializePhotoSlideShow_new(canvasID, titleID, captionID, leftArrowID, rightArrowID)
+{
+  // populatePhotoListJSONString();
+  photoSlideShow = JSON.parse(photoFileListJSONString);
+
+  // Build HTML code for the photo slide show, a bit like asp :-)
+  docBody = document.getElementsByTagName("body")[0];
+  
+  theHtmlTextToAdd = '<div style="text-align:center;">';
+  theHtmlTextToAdd += '<div style="margin-left:auto;margin-right:auto;margin-top:20px">';
+  
+
+  theHtmlTextToAdd += '<textarea id="' + htmlTitleID + '"';
+  theHtmlTextToAdd += ' readonly rows="1"';
+  theHtmlTextToAdd += ' style="width:' + photoSlideShow.displayWindow.width + 'px;font-family:Arial,serif;font-weight:bold;';
+  theHtmlTextToAdd += 'font-size:120%;line-height:1.2;margin-left:auto;margin-right:auto;margin-top:10px;text-align:center;';
+  theHtmlTextToAdd += 'background-color:' + document.body.style.backgroundColor + ';border-style:hidden;text-size-adjust:none"';
+  theHtmlTextToAdd += '>' + photoSlideShow.displayWindow.title + '</textarea>';
+
+  theHtmlTextToAdd += '<canvas id="' + htmlCanvasID + '" onclick="mouseClickInCanvas(event)"';
+  theHtmlTextToAdd += ' height="' + photoSlideShow.displayWindow.height + '" width ="' + photoSlideShow.displayWindow.width +'"';
+  theHtmlTextToAdd += ' style="border-width:3px;border-style:solid;border-color:#000000;margin-left:auto;margin-right:auto;margin-top:12px"';
+  theHtmlTextToAdd += '></canvas>';
+
+  clientW = document.documentElement.clientWidth;
+  deviceW = window.screen.width;
+
+  theHtmlTextToAdd += '<textarea id="' + htmlCaptionID + '"';
+  theHtmlTextToAdd += ' readonly rows="30"';
+  theHtmlTextToAdd += ' style="width:' + photoSlideShow.displayWindow.width + 'px;font-family:Arial,serif;';
+  fontScalePercentage = (clientW / deviceW) * 100.0;
+  theHtmlTextToAdd += 'font-size:' + fontScalePercentage.toString() + '%;line-height:1.2;margin-left:auto;margin-right:auto;margin-top:12px;';
+  theHtmlTextToAdd += 'background-color:' + document.body.style.backgroundColor + ';border-style:hidden;text-size-adjust:none"';
+  theHtmlTextToAdd += '></textarea>';
+  
+  theHtmlTextToAdd += '</div></div>';
+  
+  docBody.innerHTML += theHtmlTextToAdd;
+
+  leftArrow =  document.getElementById(leftArrowID);
+  rightArrow =  document.getElementById(rightArrowID);
+  
+  
+  //textToSave = JSON.stringify(photoSlideShow);
+
+
+  currentImageNumberInSlideShow = 0;
+  setCurrentImage(photoSlideShow.images[currentImageNumberInSlideShow].src,photoSlideShow.images[currentImageNumberInSlideShow].caption);
+}
 
 
 // *********************************************************************************************************
@@ -126,6 +205,7 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
 
 function setCurrentImage(imageFileName, captionText)
 {
+  caption = document.getElementById(htmlCaptionID);
   caption.innerHTML = captionText;
   currentImage = new Image();
   currentImage.onload = displayCurrentImage;
@@ -139,6 +219,7 @@ function setCurrentImage(imageFileName, captionText)
 
 function displayCurrentImage()
 {
+  theCanvas = document.getElementById(htmlCanvasID);
   ctx = theCanvas.getContext("2d");
   ctx.clearRect(0, 0, theCanvas.width, theCanvas.height);
   // Figure out how to display
@@ -190,6 +271,7 @@ function displayCurrentImage()
 
 function mouseClickInCanvas(evt)
 {
+  theCanvas = document.getElementById(htmlCanvasID);
   ctx = theCanvas.getContext("2d");
   if ( evt.offsetX < ctx.canvas.width/3)
   {
