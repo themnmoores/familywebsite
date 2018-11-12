@@ -38,7 +38,7 @@ var htmlCaptionID = "themnmooresCaption"
 // *********************************************************************************************************
 
 
-function initializePhotoSlideShow2()
+function initializePhotoSlideShow()
 {
   photoSlideShow = JSON.parse(photoFileListJSONString);
 
@@ -107,7 +107,7 @@ function initializePhotoSlideShow2()
 // *********************************************************************************************************
 
 
-function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rightArrowID)
+function initializePhotoSlideShow_old(canvasID, titleID, captionID, leftArrowID, rightArrowID)
 {
   // populatePhotoListJSONString();
   photoSlideShow = JSON.parse(photoFileListJSONString);
