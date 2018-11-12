@@ -1,5 +1,5 @@
 //
-// Copyright 2017, Richard J. Moore all rights reserved
+// Copyright 2017-2018, Richard J. Moore all rights reserved
 //
 // photoslideshow.js
 //
@@ -18,16 +18,11 @@ var currentImage;
 var currentImageNumberInSlideShow;
 var photoSlideShow;
 
-var leftArrow;
-var rightArrow;
-
 // HTML elements used by photo slide show code
 
 var htmlCanvasID = "themnmooresPhotoCanvas";
 var htmlTitleID = "themnmooresTitle";
 var htmlCaptionID = "themnmooresCaption"
-var htmlLeftArrowID = "themnmooresLeft";
-var htmlRightArrowID = "themnmooresRight"
 
 // *********************************************************************************************************
 //   This function must be called before any other functions!!!!
@@ -40,21 +35,11 @@ var htmlRightArrowID = "themnmooresRight"
 //   Uses standard Javascript FileReader to read the file, which will call ReadOfArchiveFileCompleted
 //   below to open and process the zip file.
 //
-//    jsonFile    File containing json string information about slide show
-//    canvasID    The string ID of the canvas element on the HTML page to use for displaying the photos
-//    titleID     The string ID of the title element (text <p>) for the photo slide show title, defined in
-//                JSON string
-//    captionID   The string ID of the caption element (text <p>) for the caption text of each photo,
-//                defined in JSON string
-//    leftArrowID The string ID of the left arrow element (image) used to set up navigating down the photos
-//    rightArrowID The string ID of the right arrow element (image) used to set up navigating up the photos
-//
 // *********************************************************************************************************
 
 
-function initializePhotoSlideShow_new(canvasID, titleID, captionID, leftArrowID, rightArrowID)
+function initializePhotoSlideShow2()
 {
-  // populatePhotoListJSONString();
   photoSlideShow = JSON.parse(photoFileListJSONString);
 
   // Build HTML code for the photo slide show, a bit like asp :-)
@@ -91,10 +76,6 @@ function initializePhotoSlideShow_new(canvasID, titleID, captionID, leftArrowID,
   
   docBody.innerHTML += theHtmlTextToAdd;
 
-  leftArrow =  document.getElementById(leftArrowID);
-  rightArrow =  document.getElementById(rightArrowID);
-  
-  
   //textToSave = JSON.stringify(photoSlideShow);
 
 
@@ -168,10 +149,6 @@ function initializePhotoSlideShow(canvasID, titleID, captionID, leftArrowID, rig
   caption.cols = 100;
   caption.readOnly = true;
   caption.autoFocus = false;
-  
-  leftArrow =  document.getElementById(leftArrowID);
-  rightArrow =  document.getElementById(rightArrowID);
-  
   
   //textToSave = JSON.stringify(photoSlideShow);
 
@@ -263,8 +240,8 @@ function displayCurrentImage()
 
 
 // *********************************************************************************************************
-// Callback for when there is a mouse click in the canvas. If it is in the left 1/3 of the canvas we go
-// like a left arrow was pressed, if it is in the right 1/3 of the canvas we go like right arrow was
+// Callback for when there is a mouse click in the canvas. If it is in the left 1/3 of the canvas we act
+// like a left arrow was pressed, if it is in the right 1/3 of the canvas we act like right arrow was
 // pressed.
 // *********************************************************************************************************
 
@@ -303,12 +280,6 @@ function rightArrowPressed()
     currentImageNumberInSlideShow++;
   }
   
-  //leftArrow.style.visibility = "visible";
-  // if (currentImageNumberInSlideShow == photoSlideShow.images.length-1)
-  // {
-  //   rightArrow.style.visibility = "hidden";
-  // }
-  
   setCurrentImage(photoSlideShow.images[currentImageNumberInSlideShow].src,photoSlideShow.images[currentImageNumberInSlideShow].caption);
   displayCurrentImage();
 }
@@ -331,12 +302,6 @@ function leftArrowPressed()
   {
     currentImageNumberInSlideShow--;
   }
-  
-  //rightArrow.style.visibility = "visible";
-  // if (currentImageNumberInSlideShow === 0)
-  // {
-  //   leftArrow.style.visibility = "hidden";
-  // }
   
   setCurrentImage(photoSlideShow.images[currentImageNumberInSlideShow].src,photoSlideShow.images[currentImageNumberInSlideShow].caption);
   displayCurrentImage();
