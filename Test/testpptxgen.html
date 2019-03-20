@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- Testing the the JS pptx creation library
+
+Copyright 2019 Richard Moore
+
+-->
+<html>
+  <head>
+    <script src="pptxgen.bundle.js"></script>
+
+</head>
+  <body> <!-- </body> onload="displayCurrentImage()"> -->
+
+  <p>Loaded pptxgen.bundle.js</p>
+  
+  <script>
+  var pptx = new PptxGenJS();
+  pptx.setAuthor('Richard J. Moore');
+  pptx.setLayout({ name:'LAYOUT_USER', width:8.62, height:11.25 });
+  
+  var slide = pptx.addNewSlide();
+  //slide.addText('Hello World!', { x:1.5, y:1.5, fontSize:36, color:'000000' });
+  slide.addImage({ path:'http://www.themnmoores.net/Photos/TMB2018Day4/photo_20180922_204823.jpg', x:0.5, y:0.5, w:3.5, h:2.62 });
+  pptx.save('SixUpTest');</script>
+
+  </body>
+</html>
