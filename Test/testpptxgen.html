@@ -14,6 +14,9 @@ Copyright 2019 Richard Moore
 
     <label style="font-size:30px; margin-top: 100px; margin-left: 50px;" id="topLabel" for="fileToUpload">Create Photo Book PPTX 6 Up</label><br/><br/>
     
+    <input type="button" style="opacity:1.0; font-size:20px;margin-left: 80px;" id="slideShowZipFileButton" value="Edit Slide Show" onclick="document.getElementById('slideShowZipFile').click();" />
+    <input style="display:none;" accept=".zip"  type="file" name="zipToEditWith" id="slideShowZipFile" onchange="LoadPhotoSlideShowFileOnly();"/>
+
     <script>
     var pptx = new PptxGenJS();
     pptx.setAuthor('Richard J. Moore');
@@ -22,9 +25,9 @@ Copyright 2019 Richard Moore
     var slide = pptx.addNewSlide();
     //slide.addText('Hello World!', { x:1.5, y:1.5, fontSize:36, color:'000000' });
     //slide.addImage({ path:'http://www.themnmoores.net/Photos/TMB2018Day4/photo_20180922_204823.jpg', x:0.5, y:0.5, w:3.5, h:2.62 });
-    pptx.save('SixUpTest');</script>
-    <input type="button" style="opacity:1.0; font-size:20px;margin-left: 80px;" id="slideShowZipFileButton" value="Edit Slide Show" onclick="document.getElementById('slideShowZipFile').click();" />
-    <input style="display:none;" accept=".zip"  type="file" name="zipToEditWith" id="slideShowZipFile" onchange="LoadPhotoSlideShowFileOnly();"/>
+    //pptx.save('SixUpTest');
+    
+    </script>
 
   </body>
 </html>

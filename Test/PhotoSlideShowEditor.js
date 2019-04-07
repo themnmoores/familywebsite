@@ -622,6 +622,30 @@ function EditPhotoSlideShow()
 }
 
 
+
+// *********************************************************************************************************
+//  Callback to only load the files and not display them in canvases. Loads the slide show json information 
+//  and the photos. There must be a
+// *********************************************************************************************************
+
+
+function LoadPhotoSlideShowFilesOnly()
+{
+
+  var files = document.getElementById('editSlideShow').files;
+  if (files.length === 0) {
+      alert("No file to upload!!!!");
+      return;
+  }
+  var file = files[0];
+
+  var reader = new FileReader();
+  reader.onloadend = ReadOfArchiveFileCompleted;
+  reader.readAsArrayBuffer(file);
+  
+}
+
+
 // *********************************************************************************************************
 // The read of the zip file is complete so get the names of the files in the zip archive, and start the
 // async processing loading the jpeg files into the photo.
