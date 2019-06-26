@@ -24,7 +24,7 @@ Most of the functionality is in javascript:
       <!-- This stuff is for either selecting to create a new slide show or edit an existing slide show and is displayed when the page is first loaded -->
       <label style="font-size:30px; margin-top: 100px; margin-left: 50px;" id="topLabel" for="fileToUpload">Slide Show Editor</label><br/><br/>
       <input type="button" style="opacity:1.0; font-size:20px;margin-left: 80px;" id="createSlideShowButton" value="Create Slide Show" onclick="document.getElementById('createSlideShow').click();" />
-      <input style="display:none;" accept=".jpg" multiple  type="file" name="filesToCreateWith" id="createSlideShow" onchange="CreateNewPhotoSlideShow();"/>
+      <input style="display:none;" accept=".jpg,.jpeg" multiple  type="file" name="filesToCreateWith" id="createSlideShow" onchange="CreateNewPhotoSlideShow();"/>
       <input type="button" style="opacity:1.0; font-size:20px;margin-left: 80px;" id="editSlideShowButton" value="Edit Slide Show" onclick="document.getElementById('editSlideShow').click();" />
       <input style="display:none;" accept=".zip"  type="file" name="zipToEditWith" id="editSlideShow" onchange="EditPhotoSlideShow();"/>
       
@@ -36,7 +36,7 @@ Most of the functionality is in javascript:
       <br>
       <input type="button" style="display:none;opacity:1.0; font-size:20px;margin-left: 160px" id="addPhotoButton" value="Add Photo(s)" onclick="document.getElementById('addPhotosToSlideShow').click();" />
       <input type="button" style="display:none;opacity:1.0; font-size:20px;margin-left: 80px" id="saveSlideShowButton" value="Save Slide Show" onclick="saveSlideShow();" />
-      <input style="display:none;" accept=".jpg" multiple  type="file"  id="addPhotosToSlideShow" onchange="addPhotosToSlideShow();"/>
+      <input style="display:none;" accept=".jpg,.jpeg" multiple  type="file"  id="addPhotosToSlideShow" onchange="addPhotosToSlideShow();"/>
       <input type="button" style="display:none;opacity:1.0; font-size:20px;margin-left: 80px" id="deleteSelectedPhotoButton" value="Delete Photo" onclick="deleteSelectedPhoto();" />
 
       <br>
