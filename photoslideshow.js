@@ -183,7 +183,8 @@ function initializePhotoSlideShow_old(canvasID, titleID, captionID, leftArrowID,
 function setCurrentImage(imageFileName, captionText)
 {
   caption = document.getElementById(htmlCaptionID);
-  caption.innerHTML = captionText;
+  caption.innerHTML = captionText + '  (Photo ' + (currentImageNumberInSlideShow+1).toString() + ' of ' +
+      photoSlideShow.images.length.toString() + ')';
   currentImage = new Image();
   currentImage.onload = displayCurrentImage;
   currentImage.src = imageFileName;
