@@ -1,5 +1,5 @@
 //
-// Copyright 2016-2017, Richard J. Moore all rights reserved
+// Copyright 2016-2020, Richard J. Moore all rights reserved
 //
 // formatGoogleDocHtmlFuncs.js
 //
@@ -54,6 +54,8 @@ function StartGoogleDocsHTMLZipConvert() {
 
 
 // *********************************************************************************************************
+// THIS IS THE CURRENT CODE PATH ****
+//
 // The read of the zip file is complete so get the html file in the zip and transform it, then write it
 // back into the zip file and save (download)
 // *********************************************************************************************************
@@ -140,6 +142,9 @@ function ReadOfArchiveFileCompletedJsZipTry2(evt)
         {
           content = content.replace('?vertscrollspan%3D', '?vertscrollspan=');
         }
+
+        // Replace the bogus youtube link
+        content = content.replace('playlist?list%3D', 'playlist?list=')
         
         // Replace the modified into the zip file (overwritting the existing one)
         zip.file(fileNames[0].name,content);
@@ -253,6 +258,9 @@ function ReadOfArchiveFileCompletedJsZip(evt)
         {
           content = content.replace('?vertscrollspan%3D', '?vertscrollspan=');
         }
+        
+        
+        
         
         // Replace the modified into the zip file (overwritting the existing one)
         zip.file(fileNames[0].name,content);
