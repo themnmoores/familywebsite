@@ -128,8 +128,9 @@ function addImageToEndOfGallery(evt)
   document.body.appendChild(theCanvas);
   
   // ****  Push an image to the end of the photo slide show array of images
+          /*caption:'Caption ' + (PhotoSlideShowEditorVars.photoSlideShow.images.length + 1).toString(),*/
   PhotoSlideShowEditorVars.photoSlideShow.images.push({src:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser].name,
-        caption:'Caption ' + (PhotoSlideShowEditorVars.photoSlideShow.images.length + 1).toString(),
+        caption:"",
         htmlCanvas:theCanvas,
         imageObj:evt.target,
         imageFileBlob:PhotoSlideShowEditorVars.imageFilesSelectedByUser[PhotoSlideShowEditorVars.currentImageSelectedByUser]
