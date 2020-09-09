@@ -1,11 +1,14 @@
 //
-// Copyright 2017, Richard J. Moore all rights reserved
+// Copyright 2017,2020, Richard J. Moore all rights reserved
 //
 // PhotoSlideShowEditor.js
 //
 // Collection of common functions for doing a photo slide show editor
 //
 // The HTML page must set up the callbacks to start either a new slide show or editing an existing one
+//
+// History
+//    Sept 9, 2020    Implemented delete photo button on thumbnail display grid
 //
 
 // *************************************************************************************************************
@@ -20,7 +23,7 @@ var PhotoSlideShowEditorVars = {
   photoGalleryElementHeight:120,
   photoGalleryInterSpace:40,
   photoGalleryHorizontalImages:6,
-  photoGalleryCanvases:[],          // We hold the canvases here to all use to quickly move them or enable/disable display
+  //photoGalleryCanvases:[],          // We hold the canvases here to allow use to be able to quickly move them or enable/disable display
   photoGalleryDiv:undefined,        // The Div containing the photo Gallery
   
 
@@ -335,7 +338,7 @@ function saveSlideShow()
 
 
 // *********************************************************************************************************
-//  Event handler for a mouse click event on a photo gallery canvas (photo)
+//  Event handler for a mouse click event on a photo gallery canvas (photo thumbnail)
 //
 //  If this is the first mouse on a canvas photo we make the border red and simply log which canvas was
 //  selected
@@ -420,13 +423,28 @@ function photoGalleryElementMouseClick (evt)
 
 
 // *********************************************************************************************************
-//  Code associated for deleted a selected photo in gallery view
+//  Code associated for deleting a selected photo in gallery view
 // *********************************************************************************************************
 
 function deleteSelectedPhoto()
 {
+  // Hide current thumbnail on canvas
+  PhotoSlideShowEditorVars.currentlySelectedCanvas.style.border = "1px solid black";
+  selectedCanvasIndex = findCurrentIndexOfCanvas(PhotoSlideShowEditorVars.currentlySelectedCanvas.id);
+  PhotoSlideShowEditorVars.photoSlideShow.images[selectedCanvasIndex].htmlCanvas.hidden = true;
   
-  photoSlideShow.images.splice(PhotoSlideShowEditorVars.PhotoSlideShowEditorVars.currentImageNumberInSlideShow, 1);
+  PhotoSlideShowEditorVars.photoSlideShow.images.splice(selectedCanvasIndex, 1);
+
+  // Next reset the canvas positions to cover up deleted image
+  for (image = selectedCanvasIndex ; image < PhotoSlideShowEditorVars.photoSlideShow.images.length ; image++)
+  {
+    PhotoSlideShowEditorVars.photoSlideShow.images[image].htmlCanvas.style.top = calculateTopY(image).toString() + 'px';
+    PhotoSlideShowEditorVars.photoSlideShow.images[image].htmlCanvas.style.left = calculateLeftX(image).toString() + 'px';
+  }
+  
+    PhotoSlideShowEditorVars.currentlySelectedCanvas = undefined;
+    disableDeleteSelectedPhotoButton();
+
 }
 
 function displayDeleteSelectedPhotoButton()
