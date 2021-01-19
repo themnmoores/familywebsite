@@ -123,12 +123,15 @@ function ReadOfArchiveFileCompletedJsZipTry2(evt)
         content = content.replace('<body', '<body style="padding:0 0 0 0;max-width:100vw" onload="setVerticalPositionToSpan()"');
         
         
-        // Remove the <div> that google docs puts in as it adds a weird white box (as of Oct 2020 that is)
-        content = content.replace('</div>', '');
-        var beginingOfDiv = content.indexOf('<div');
-        var endOfDiv = content.substring(beginingOfDiv).indexOf('>') + beginingOfDiv;
-        var divStringToReplace = content.substring(beginingOfDiv, endOfDiv+1);
-        content = content.replace(divStringToReplace, '');
+        // Remove the <div> that google docs puts in as it adds a weird white box (as of Oct 2020 that is, looks like google removed it as of Jan 2021 had to test for it's existence)
+        if (content.indexOf('</div>') != -1)
+        {
+          content = content.replace('</div>', '');
+          var beginingOfDiv = content.indexOf('<div');
+          var endOfDiv = content.substring(beginingOfDiv).indexOf('>') + beginingOfDiv;
+          var divStringToReplace = content.substring(beginingOfDiv, endOfDiv+1);
+          content = content.replace(divStringToReplace, '');
+        }
         
         // Now set the background formatting, add the header and navigation link areas of the web page in the beginning of the <body>
         if (description.indexOf('Picture albums on themnmoores website') == -1)
