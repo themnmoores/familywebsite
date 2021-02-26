@@ -29,7 +29,7 @@ function commonPageHeaderBarNew2(centeredText, pathToBase) {
       deviceWidth3 = screen.width * window.devicePixelRatio;
       if (deviceWidth3 > deviceWidth)
         deviceWidth = deviceWidth3;
-      textToAdd += '<a href="' + pathToBase + 'index.html"> <p style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;position:absolute;left:20px;width:30%;top:20px;font-family:Georgia, serif;font-size: 40px;color:white">THEMNMOORES.NET</p> </a><img src="' + pathToBase + 'pictures/familysmall.jpg" alt="Family" height="160px" style="position:relative;left:85%;top:0px;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;border=0px none">'; //<p style="margin:0px 0px 0px 0px;position:relative;left:140px;top:-80px;text-align:left;font-family:Georgia, serif;font-size: 40px;color:white">' + centeredText +'</p>';
+      textToAdd += '<a href="' + pathToBase + 'index.html"> <p style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;position:absolute;left:20px;width:30%;top:20px;font-family:Georgia, serif;font-size: 40px;color:white">THEMNMOORES.NET</p> </a><img src="' + pathToBase + 'pictures/familysmall2.jpg" alt="Family" height="160px" style="position:relative;left:85%;top:0px;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;border=0px none">'; //<p style="margin:0px 0px 0px 0px;position:relative;left:140px;top:-80px;text-align:left;font-family:Georgia, serif;font-size: 40px;color:white">' + centeredText +'</p>';
      // textToAdd += '<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/v7+AP///wCXl5cAZmZmAJ2dnQB9fX0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAgACAgICAgICAgIAIgICAgICAgACAAIEBAQCAgICAgAEAAIAAiIiRERCIiIiIiJEREIiIiIiIkREQiIiIiIiRERCIiIiIiJEREQSIiIiIkREREQiIiAjBAQAAiIiICUGAgIiIiIgIgACACIiIiAiAgICIiIiAAICAgACIiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" >';
       textToAdd += '</div>';
       docBody = document.getElementsByTagName("body")[0];
@@ -47,16 +47,16 @@ function commonPageHeaderBarNew2(centeredText, pathToBase) {
 //
 function commonNavivationButtonsNew2(pathToBase, grayOut) {
       docBody = document.getElementsByTagName("body")[0];
-      
+
       textToAdd = '';
       //textToAdd += '<div id="themnmoores_nav" style="position:absolute;left:20px;top:180px"> ';
       textToAdd += '<div id="themnmoores_nav" style="text-align:center;margin-top:20px;margin-left: auto;margin-right: auto;border:0px none;width=1200px;"> ';
-      
+
       if (grayOut == "1")
         textToAdd += '<img src="' + pathToBase + 'pictures/homegraybutton.png" alt="Home" height="50" style="margin-left:0px;border:0 none">';
       else
         textToAdd += '<a style="margin-left:0px;border:0"href="' + pathToBase + 'index.html"><img src="' + pathToBase + 'pictures/homebutton.png" alt="Home" height="50" ></a>';
-      
+
       if (grayOut == "2")
         textToAdd += '<img src="' + pathToBase + 'pictures/picturesgraybutton.png" alt="Home" height="50" style="margin-left:60px;border:0">';
       else
@@ -66,7 +66,7 @@ function commonNavivationButtonsNew2(pathToBase, grayOut) {
         textToAdd += '<img src="' + pathToBase + 'pictures/blogsgraybutton.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;margin-left:60px;border:0">';
       else
         textToAdd += '<a style="margin-left:60px;border:0" href="' + pathToBase + 'blogs.html"><img src="' + pathToBase + 'pictures/blogsbutton.png" alt="Home" height="50" ></a>';
-      
+
       textToAdd += "</div>";
       docBody.innerHTML += textToAdd;
 }
@@ -78,10 +78,10 @@ function commonNavivationButtonsNew2(pathToBase, grayOut) {
 //
 function addHTMLCommentBox() {
   docBody.innerHTML += '<div style="text-align:center" ><div style="width:612pt;margin-left: auto;margin-right: auto;"><div style="text-align: left" id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div></div></div><link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />';
-  
+
 if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%248DKVvDwwAtdLRiQpjTnoU0"+"&opts=16862&num=10&ts=1482012402568");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})();
 
-  
+
 }
 
 
@@ -137,14 +137,14 @@ function setVerticalPositionToSpan () {
       }
     }
   }
-  
+
 }
 
 
 
   // ********************************* OLD STUFF
-  
-   
+
+
 //
 // Displays a header bar at the top of a web page, and adds a favicon
 // *** HTML must create a <div id="headerTopBar"></div> before calling.
@@ -167,7 +167,7 @@ function commonPageHeaderBar(centeredText, pathToBase) {
       theDivWeWant.style.width=deviceWidth.toString() + "px";
       theDivWeWant.style.minWidth="1024px";
       //theDivWeWant.style.minWidth="1200px";
-      theDivWeWant.innerHTML = '<a href="' + pathToBase + 'index.html"> <p style="margin:0px 0px 0px 0px;position:absolute;left:20px;width:30%;top:20px;font-family:Georgia, serif;font-size: 40px;color:white">THEMNMOORES.NET</p> </a><img src="' + pathToBase + 'pictures/familysmall.jpg" alt="Family" height="160" style="position:relative;left:85%;top:0px"><p style="margin:0px 0px 0px 0px;position:relative;right;left:0%;width:100%;top:-60px;text-align: center;font-family:Georgia, serif;font-size: 40px;color:white">' + centeredText +'</p>';
+      theDivWeWant.innerHTML = '<a href="' + pathToBase + 'index.html"> <p style="margin:0px 0px 0px 0px;position:absolute;left:20px;width:30%;top:20px;font-family:Georgia, serif;font-size: 40px;color:white">THEMNMOORES.NET</p> </a><img src="' + pathToBase + 'pictures/familysmall2.jpg" alt="Family" height="160" style="position:relative;left:85%;top:0px"><p style="margin:0px 0px 0px 0px;position:relative;right;left:0%;width:100%;top:-60px;text-align: center;font-family:Georgia, serif;font-size: 40px;color:white">' + centeredText +'</p>';
       theDivWeWant.innerHTML += '<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/v7+AP///wCXl5cAZmZmAJ2dnQB9fX0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAgACAgICAgICAgIAIgICAgICAgACAAIEBAQCAgICAgAEAAIAAiIiRERCIiIiIiJEREIiIiIiIkREQiIiIiIiRERCIiIiIiJEREQSIiIiIkREREQiIiAjBAQAAiIiICUGAgIiIiIgIgACACIiIiAiAgICIiIiAAICAgACIiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" >'
 }
 
@@ -186,7 +186,7 @@ function commonNavivationButtons(pathToBase, grayOut) {
         docBody.innerHTML += '<img src="' + pathToBase + 'pictures/homegraybutton.png" alt="Home" height="50" style="position:absolute;left:20px;top:180px">';
       else
         docBody.innerHTML += '<a href="' + pathToBase + 'index.html"> <img src="' + pathToBase + 'pictures/homebutton.png" alt="Home" height="50" style="position:absolute;left:20px;top:180px"></a>';
-      
+
       if (grayOut == "2")
         docBody.innerHTML += '<img src="' + pathToBase + 'pictures/picturesgraybutton.png" alt="Home" height="50" style="position:absolute;left:20px;top:250px">';
       else
@@ -198,5 +198,3 @@ function commonNavivationButtons(pathToBase, grayOut) {
         docBody.innerHTML += '<a href="' + pathToBase + 'blogs.html"> <img src="' + pathToBase + 'pictures/blogsbutton.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;position:absolute;left:20px;top:320px"></a>';
 
 }
-
-
