@@ -126,7 +126,11 @@ function startProcessingFile(name)
     currentImage = new Image();
     content.type = 'image/jpeg';
     currentImage.src = URL.createObjectURL(content);
+    //currentImage.onload = resizeImage;
     currentImage.onload = resizeImage;
+	currentImage.onerror = function() {
+		alert('Oops, bad stuff happened while loading image: ' + name);
+	}
     
   },
   function error(e){
@@ -186,6 +190,7 @@ function nextImage()
   if (currentFileNumber < fileNames.length)
   {
       // Kick off the async chain of callbacks for processing an image
+	console.log('currentFileNumber = ' + currentFileNumber.toString() + '  Name = ' + fileNames[currentFileNumber].name);
     startProcessingFile(fileNames[currentFileNumber].name);
   }
   else
