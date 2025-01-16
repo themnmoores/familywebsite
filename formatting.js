@@ -1,5 +1,5 @@
 //
-// Copyright 2016-2017, Richard J. Moore all rights reserved
+// Copyright 2016-2017, 2025 Richard J. Moore all rights reserved
 //
 // formating.js
 //
@@ -11,7 +11,8 @@
 // Sets the body's background color and margins
 //
 function setBodyBackgroundFormatting() {
-  document.body.style.backgroundColor="#E1D6A9";
+//  document.body.style.backgroundColor="#E1D6A9";
+  document.body.style.backgroundColor="#FFFFFF";
   document.body.style.margin="0px 0px 0px 0px";
 }
 
@@ -24,7 +25,8 @@ function setBodyBackgroundFormatting() {
 //
 function commonPageHeaderBarNew2(centeredText, pathToBase) {
       textToAdd = '';
-      textToAdd += '<div id="themnmoores_headerBar" style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;position:relative;left:0px;top:0px;height:160px;width:100vw;background-color:#862507;border=0px none"> ';
+//      textToAdd += '<div id="themnmoores_headerBar" style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;position:relative;left:0px;top:0px;height:160px;width:100vw;background-color:#862507;border=0px none"> ';
+      textToAdd += '<div id="themnmoores_headerBar" style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;position:relative;left:0px;top:0px;height:160px;width:100vw;background-color:#CFCFCF;border=0px none"> ';
       deviceWidth = window.innerWidth;
       deviceWidth3 = screen.width * window.devicePixelRatio;
       if (deviceWidth3 > deviceWidth)
@@ -53,19 +55,19 @@ function commonNavivationButtonsNew2(pathToBase, grayOut) {
       textToAdd += '<div id="themnmoores_nav" style="text-align:center;margin-top:20px;margin-left: auto;margin-right: auto;border:0px none;width=1200px;"> ';
 
       if (grayOut == "1")
-        textToAdd += '<img src="' + pathToBase + 'pictures/homegraybutton.png" alt="Home" height="50" style="margin-left:0px;border:0 none">';
+        textToAdd += '<img src="' + pathToBase + 'pictures/homegraybutton2.png" alt="Home" height="50" style="margin-left:0px;border:0 none">';
       else
-        textToAdd += '<a style="margin-left:0px;border:0"href="' + pathToBase + 'index.html"><img src="' + pathToBase + 'pictures/homebutton.png" alt="Home" height="50" ></a>';
+        textToAdd += '<a style="margin-left:0px;border:0"href="' + pathToBase + 'index.html"><img src="' + pathToBase + 'pictures/homebutton2.png" alt="Home" height="50" ></a>';
 
       if (grayOut == "2")
-        textToAdd += '<img src="' + pathToBase + 'pictures/picturesgraybutton.png" alt="Home" height="50" style="margin-left:60px;border:0">';
+        textToAdd += '<img src="' + pathToBase + 'pictures/picturesgraybutton2.png" alt="Home" height="50" style="margin-left:60px;border:0">';
       else
-        textToAdd += '<a style="margin-left:60px;border:0 none" href="' + pathToBase + 'pictures.html"><img src="' + pathToBase + 'pictures/picturesbutton.png" height="50" ></a>';
+        textToAdd += '<a style="margin-left:60px;border:0 none" href="' + pathToBase + 'pictures.html"><img src="' + pathToBase + 'pictures/picturesbutton2.png" height="50" ></a>';
 
       if (grayOut == "3")
-        textToAdd += '<img src="' + pathToBase + 'pictures/blogsgraybutton.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;margin-left:60px;border:0">';
+        textToAdd += '<img src="' + pathToBase + 'pictures/blogsgraybutton2.png" alt="Home" height="50" style="margin:0px 0px 0px 0px;margin-left:60px;border:0">';
       else
-        textToAdd += '<a style="margin-left:60px;border:0" href="' + pathToBase + 'blogs.html"><img src="' + pathToBase + 'pictures/blogsbutton.png" alt="Home" height="50" ></a>';
+        textToAdd += '<a style="margin-left:60px;border:0" href="' + pathToBase + 'blogs.html"><img src="' + pathToBase + 'pictures/blogsbutton2.png" alt="Home" height="50" ></a>';
 
       textToAdd += "</div>";
       docBody.innerHTML += textToAdd;
